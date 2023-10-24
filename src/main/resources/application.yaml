@@ -1,0 +1,43 @@
+application:
+#  jwt:
+#    secretKey: 'TheitsybitsyspiderclimbedupthewaterspoutDowncametherainandwashedthespiderout'
+#    tokenPrefix: 'Bearer '
+#    tokenExpirationAfterMinutes: 3600
+#    refreshTokenExpirationAfterDays: 14
+
+spring:
+  application:
+    name: thebook-application
+  datasource:
+    url: jdbc:postgresql://localhost:5432/thebook
+    username: thebook-app
+    password: thebook-app
+    driver-class-name: org.postgresql.Driver
+    testWhileIdle: true
+    validationQuery: SELECT 1
+    jpa:
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          dialetc: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
+
+queries:
+  sql:
+    user-dao:
+      insert:
+        user: >
+          INSERT INTO thebook_platform.user (id, nome, username, email, senha, 
+          data_nasc, CPF, data_entr, situacao, papel) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?::thebook_platform.situation, ?::thebook_platform.role)
+      select:
+        user-by-id:
+          SELECT * FROM thebook_platform.user WHERE id = ?
+        user-by-username:
+            SELECT * FROM thebook_platform.user WHERE username = ?
+        user-by-email:
+            SELECT * FROM thebook_platform.user WHERE email = ?
+      exists:
+        user-by-id:
+          SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
+          
