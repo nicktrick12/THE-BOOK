@@ -33,7 +33,8 @@ public class UserRequest {
     }
 
     public User toUser() {
-        return User.createFromUser(name, username, email, password, birth, CPF, entryDate, role);
+        return User.createFromUser(name, username, email,
+                password, birth, CPF, entryDate, role);
     }
 
 

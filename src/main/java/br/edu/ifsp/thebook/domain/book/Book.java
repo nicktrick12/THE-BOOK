@@ -12,7 +12,7 @@ public class Book {
     private String title;
     private String gender;
     private String author;
-    private String classification;
+    private int classification;
     private String summary;
     private Timestamp dataAdd;
     private UUID idUserAdd;
@@ -20,7 +20,7 @@ public class Book {
     private int average;
 
     public Book(UUID id, int pages, String title, String gender, String author,
-                String classification, String summary, Timestamp dataAdd,
+                int classification, String summary, Timestamp dataAdd,
                 UUID idUserAdd, BookState bookState, int average) {
         this.id = id;
         this.pages = pages;
@@ -36,7 +36,7 @@ public class Book {
     }
 
     public Book(int pages, String title, String gender, String author,
-                String classification, String summary, Timestamp dataAdd,
+                int classification, String summary, Timestamp dataAdd,
                 UUID idUserAdd, BookState bookState, int average) {
         this.pages = pages;
         this.title = title;
@@ -57,18 +57,18 @@ public class Book {
     }
 
     public static Book createFull(UUID id, int pages, String title, String gender, String author,
-                                  String classification, String summary, Timestamp dataAdd,
+                                  int classification, String summary, Timestamp dataAdd,
                                   UUID idUserAdd, BookState bookState, int average) {
         return new Book(id, pages, title, gender, author, classification, summary, dataAdd,
                 idUserAdd, bookState, average);
     }
 
     public static Book createFromBook(int pages, String title, String gender, String author,
-            String classification, String summary, Timestamp dataAdd,
+            int classification, String summary, Timestamp dataAdd,
             UUID idUserAdd, BookState bookState, int average) {
         return new Book(pages, title, gender, author,
                  classification,summary, dataAdd,
-                idUserAdd, bookState,average)
+                idUserAdd, bookState,average);
     }
 
     public UUID getId() {
@@ -111,11 +111,11 @@ public class Book {
         this.author = author;
     }
 
-    public String getClassification() {
+    public int getClassification() {
         return classification;
     }
 
-    public void setClassification(String classification) {
+    public void setClassification(int classification) {
         this.classification = classification;
     }
 

@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Repository
@@ -27,7 +29,7 @@ public class BookDAOImpl implements BookDAO {
 
         jdbcTemplate.update(insertUserQuery, bookId, book.getPages(), book.getTitle(),
                 book.getGender(), book.getAuthor(), book.getClassification(), book.getSummary(),
-                book.getDataAdd(), book.getIdUserAdd(), book.getBookState().name(), book.getAverage());
+                Timestamp.valueOf(LocalDateTime.now()), book.getIdUserAdd(), book.getBookState().name(), book.getAverage());
 
         return book.createWithId(bookId);
     }

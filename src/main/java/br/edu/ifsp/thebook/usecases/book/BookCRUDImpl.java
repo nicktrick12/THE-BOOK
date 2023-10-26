@@ -19,7 +19,6 @@ public class BookCRUDImpl implements BookCRUD {
     @Override
     public Book registerNewBook(BookRequest request) {
         Book book = request.toBook();
-        user.setSituation(Situation.LIVRE);
-        return userDAO.addNewUser(user);
+        return bookDAO.addNewBook(book);
     }
 }

@@ -2,6 +2,7 @@ package br.edu.ifsp.thebook.web.model.book.request;
 
 import br.edu.ifsp.thebook.domain.book.Book;
 import br.edu.ifsp.thebook.domain.book.BookState;
+import br.edu.ifsp.thebook.domain.user.User;
 
 import java.sql.Timestamp;
 import java.util.UUID;
@@ -11,7 +12,7 @@ public class BookRequest {
     private String title;
     private String gender;
     private String author;
-    private String classification;
+    private int classification;
     private String summary;
     private Timestamp dataAdd;
     private UUID idUserAdd;
@@ -19,7 +20,7 @@ public class BookRequest {
     private int average;
 
     public BookRequest(int pages, String title, String gender, String author,
-                       String classification, String summary, Timestamp dataAdd,
+                       int classification, String summary, Timestamp dataAdd,
                        UUID idUserAdd, BookState bookState, int average) {
         this.pages = pages;
         this.title = title;
@@ -33,11 +34,11 @@ public class BookRequest {
         this.average = average;
     }
 
-    public BookRequest() {
+    public Book toBook() {
+        return Book.createFromBook(pages, title, gender, author, classification, summary, dataAdd, idUserAdd, bookState, average);
     }
 
-    public Book toBook() {
-        return Book.createFromBook()
+    public BookRequest() {
     }
 
     public int getPages() {
@@ -72,11 +73,11 @@ public class BookRequest {
         this.author = author;
     }
 
-    public String getClassification() {
+    public int getClassification() {
         return classification;
     }
 
-    public void setClassification(String classification) {
+    public void setClassification(int classification) {
         this.classification = classification;
     }
 

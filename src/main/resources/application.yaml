@@ -43,6 +43,6 @@ queries:
     book-dao:
       insert:
         book: >
-          INSERT INTO thebook_platform.book (id, paginas, titulo, genero, 
+          INSERT INTO thebook_platform.livro (id, paginas, titulo, genero, 
           autor, classificacao, resumo, data_add, id_user_add, status, 
           media_aval) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?::thebook_platform.livro_status, ?)
