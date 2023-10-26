@@ -2,6 +2,7 @@ CREATE SCHEMA thebook_platform;
 
 ALTER SCHEMA thebook_platform OWNER TO "thebook";
 
+-- rodar daqui --
 DROP TYPE IF EXISTS thebook_platform.situation CASCADE;
 
 CREATE TYPE thebook_platform.situation AS ENUM (
@@ -45,7 +46,7 @@ DROP TYPE IF EXISTS thebook_platform.livro_status CASCADE;
 
 CREATE TYPE thebook_platform.livro_status AS ENUM (
     'AUTENTICADO',
-    'NAO AUTENTICADO'
+    'NAO_AUTENTICADO'
 );
 
 ALTER TYPE thebook_platform.livro_status OWNER TO "thebook";

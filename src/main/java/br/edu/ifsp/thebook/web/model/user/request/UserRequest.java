@@ -29,12 +29,13 @@ public class UserRequest {
         this.role = role;
     }
 
+    public UserRequest() {
+    }
+
     public User toUser() {
         return User.createFromUser(name, username, email, password, birth, CPF, entryDate, role);
     }
 
-    public UserRequest() {
-    }
 
     public String getName() {
         return name;
