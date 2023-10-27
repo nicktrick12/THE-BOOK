@@ -1,12 +1,9 @@
 package br.edu.ifsp.thebook.web.model.user.response;
 
-import br.edu.ifsp.thebook.ThebookApplication;
 import br.edu.ifsp.thebook.domain.user.Role;
 import br.edu.ifsp.thebook.domain.user.Situation;
 import br.edu.ifsp.thebook.domain.user.User;
 
-import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.UUID;
 
 public class UserResponse {
@@ -15,23 +12,20 @@ public class UserResponse {
     String username;
     String email;
     String password;
-    Timestamp birth;
-    String CPF;
-    Timestamp entryDate;
+    int age;
+    String cpf;
     Situation situation;
     Role role;
 
     public UserResponse(UUID id, String name, String username, String email,
-                        String password, Timestamp birth, String CPF,
-                        Timestamp entryDate, Situation situation, Role role) {
+                        String password, int age, String cpf, Situation situation, Role role) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.birth = birth;
-        this.CPF = CPF;
-        this.entryDate = entryDate;
+        this.age = age;
+        this.cpf = cpf;
         this.situation = situation;
         this.role = role;
     }
@@ -46,9 +40,8 @@ public class UserResponse {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getBirth(),
-                user.getCPF(),
-                user.getEntryDate(),
+                user.getAge(),
+                user.getCpf(),
                 user.getSituation(),
                 user.getRole()
         );
@@ -94,28 +87,20 @@ public class UserResponse {
         this.password = password;
     }
 
-    public Timestamp getBirth() {
-        return birth;
+    public int getAge() {
+        return age;
     }
 
-    public void setBirth(Timestamp birth) {
-        this.birth = birth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Timestamp getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Timestamp entryDate) {
-        this.entryDate = entryDate;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Situation getSituation() {

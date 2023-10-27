@@ -12,7 +12,6 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -41,12 +40,10 @@ public class UserDAOImpl implements UserDAO {
     public User addNewUser(User user) {
 
         UUID userId = UUID.randomUUID();
-        System.out.println(user.getSituation().name());
-        System.out.println(user.getRole().name());
 
         jdbcTemplate.update(insertUserQuery, userId, user.getName(), user.getUsername(),
-                user.getEmail(), user.getPassword(), user.getBirth(), user.getCPF(),
-                user.getEntryDate(), user.getSituation().name(), user.getRole().name());
+                user.getEmail(), user.getPassword(), user.getAge(), user.getCpf(),
+                user.getSituation().name(), user.getRole().name());
 
         return user.createWithId(userId);
     }
@@ -112,18 +109,17 @@ public class UserDAOImpl implements UserDAO {
 
     private User mapperUserFromRs(ResultSet rs, int rowNum) throws SQLException {
         UUID id = (UUID) rs.getObject("id");
-        String name = rs.getString("nome");
+        String name = rs.getString("name");
         String username = rs.getString("username");
         String email = rs.getString("email");
-        String password = rs.getString("senha");
-        Timestamp birth = rs.getTimestamp("data_nasc");
-        String CPF = rs.getString("CPF");
-        Timestamp entryDate = rs.getTimestamp("data_entr");
-        Situation situation = Situation.valueOf(rs.getString("situacao"));
-        Role role = Role.valueOf(rs.getString("papel"));
+        String password = rs.getString("password");
+        int age = rs.getInt("age");
+        String CPF = rs.getString("cpf");
+        Situation situation = Situation.valueOf(rs.getString("situation"));
+        Role role = Role.valueOf(rs.getString("role"));
 
         return User.createFull(id, name, username, email, password,
-                birth, CPF, entryDate, situation, role);
+                age, CPF, situation, role);
     }
 
 }

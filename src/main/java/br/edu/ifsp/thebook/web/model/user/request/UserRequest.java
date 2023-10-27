@@ -1,31 +1,25 @@
 package br.edu.ifsp.thebook.web.model.user.request;
 
 import br.edu.ifsp.thebook.domain.user.Role;
-import br.edu.ifsp.thebook.domain.user.Situation;
 import br.edu.ifsp.thebook.domain.user.User;
-
-import java.sql.Timestamp;
-import java.util.UUID;
 
 public class UserRequest {
     private String name;
     private String username;
     private String email;
     private String password;
-    private Timestamp birth;
-    private String CPF;
-    private Timestamp entryDate;
+    private int age;
+    private String cpf;
     private Role role;
 
     public UserRequest(String name, String username, String email, String password,
-                       Timestamp birth, String CPF, Timestamp entryDate, Role role) {
+                       int age, String cpf, Role role) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.birth = birth;
-        this.CPF = CPF;
-        this.entryDate = entryDate;
+        this.age = age;
+        this.cpf = cpf;
         this.role = role;
     }
 
@@ -34,7 +28,7 @@ public class UserRequest {
 
     public User toUser() {
         return User.createFromUser(name, username, email,
-                password, birth, CPF, entryDate, role);
+                password, age, cpf, role);
     }
 
 
@@ -70,28 +64,20 @@ public class UserRequest {
         this.password = password;
     }
 
-    public Timestamp getBirth() {
-        return birth;
+    public int getAge() {
+        return age;
     }
 
-    public void setBirth(Timestamp birth) {
-        this.birth = birth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Timestamp getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Timestamp entryDate) {
-        this.entryDate = entryDate;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Role getRole() {

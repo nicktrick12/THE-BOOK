@@ -1,6 +1,5 @@
 package br.edu.ifsp.thebook.domain.user;
 
-import java.sql.Timestamp;
 import java.util.*;
 
 public class User {
@@ -10,68 +9,64 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private Timestamp birth;
-    private String CPF;
-    private Timestamp entryDate;
+    private int age;
+    private String cpf;
     private Situation situation;
     private Role role;
 
     public User(UUID id, String name, String username,
-                String email, String password, Timestamp birth,
-                String CPF, Timestamp entryDate,
-                Situation situation, Role role) {
+                String email, String password, int age,
+                String cpf, Situation situation, Role role) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.birth = birth;
-        this.CPF = CPF;
-        this.entryDate = entryDate;
+        this.age = age;
+        this.cpf = cpf;
         this.situation = situation;
-        this.role = role;
-    }
-
-    public User(String name, String username, String email, String password,
-                Timestamp birth, String CPF, Timestamp entryDate, Role role) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.birth = birth;
-        this.CPF = CPF;
-        this.entryDate = entryDate;
         this.role = role;
     }
 
     public User(UUID id, String name, String username,
-                String email, String password, Timestamp birth,
+                String email, String password, int age,
                 Situation situation, Role role) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.birth = birth;
+        this.age = age;
         this.situation = situation;
         this.role = role;
     }
 
+
+    public User(String name, String username, String email, String password,
+                int age, String cpf, Role role) {
+        this.name = name;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.age = age;
+        this.cpf = cpf;
+        this.role = role;
+    }
+
     public static User createFull(UUID id, String name, String username,
-                                  String email, String password, Timestamp birth,
-                                  String CPF, Timestamp entryDate,
-                                  Situation situation, Role role) {
-        return new User(id, name, username, email, password, birth, CPF, entryDate, situation, role);
+                                  String email, String password, int age,
+                                  String cpf, Situation situation, Role role) {
+        return new User(id, name, username, email, password, age, cpf, situation, role);
     }
 
     public static User createFromUser(String name, String username, String email,
-                                 String password, Timestamp birth, String CPF,
-                                 Timestamp entryDate, Role role) {
-        return new User(name, username, email, password, birth, CPF, entryDate, role);
+                                 String password, int age, String cpf,
+                                 Role role) {
+        return new User(name, username, email, password, age, cpf, role);
     }
 
     public User createWithId(UUID id) {
-        return new User(id, name, username, email, password, birth, CPF, entryDate, situation, role);
+        return new User(id, name, username, email, password, age, cpf, situation, role);
     }
 
     public UUID getId() {
@@ -114,28 +109,20 @@ public class User {
         this.password = password;
     }
 
-    public Timestamp getBirth() {
-        return birth;
+    public int getAge() {
+        return age;
     }
 
-    public void setBirth(Timestamp birth) {
-        this.birth = birth;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
-
-    public Timestamp getEntryDate() {
-        return entryDate;
-    }
-
-    public void setEntryDate(Timestamp entryDate) {
-        this.entryDate = entryDate;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
     public Situation getSituation() {
