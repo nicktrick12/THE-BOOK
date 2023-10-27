@@ -48,3 +48,6 @@ queries:
           INSERT INTO thebook_platform.book (id, pages, title, gender, 
           author, classification, summary, date_add, id_user_add, status, 
           average) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?::thebook_platform.book_status, ?)
+      select:
+        all:
+          SELECT * FROM thebook_platform.book
