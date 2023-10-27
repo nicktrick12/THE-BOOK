@@ -7,6 +7,7 @@ import br.edu.ifsp.thebook.web.model.user.response.UserResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -29,6 +30,25 @@ public class UserController {
     public ResponseEntity<UserResponse> getUserById(@PathVariable UUID userId) {
         User user = userCRUD.getById(userId);
         return ResponseEntity.ok(UserResponse.createFromUser(user));
+    }
+
+    @GetMapping("api/v1/users/email/{email}")
+    public ResponseEntity<UserResponse> getUserByEmail(@PathVariable String email) {
+        User user = userCRUD.getByEmail(email);
+        return ResponseEntity.ok(UserResponse.createFromUser(user));
+    }
+
+    @GetMapping("api/v1/users/username/{username}")
+    public ResponseEntity<UserResponse> getUserByUsername(@PathVariable String username) {
+        User user = userCRUD.getByUsername(username);
+        return ResponseEntity.ok(UserResponse.createFromUser(user));
+    }
+
+    @GetMapping("api/v1/users/all")
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        List<User> users = userCRUD.getAll();
+        return ResponseEntity.ok(users.stream()
+                .map(UserResponse::createFromUser).toList());
     }
 
 }

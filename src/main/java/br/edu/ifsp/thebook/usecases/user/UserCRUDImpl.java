@@ -6,6 +6,7 @@ import br.edu.ifsp.thebook.usecases.user.gateway.UserDAO;
 import br.edu.ifsp.thebook.web.model.user.request.UserRequest;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,6 +20,12 @@ public class UserCRUDImpl implements UserCRUD {
         User user = request.toUser();
         user.setSituation(Situation.LIVRE);
         return userDAO.addNewUser(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        List<User> users = userDAO.findAll();
+        return users;
     }
 
     @Override

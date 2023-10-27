@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,6 +28,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Value("${queries.sql.user-dao.insert.user}")
     private String insertUserQuery;
+    @Value("${queries.sql.user-dao.select.all}")
+    private String selectAllUsersQuery;
     @Value("${queries.sql.user-dao.select.user-by-id}")
     private String selectUserByIdQuery;
     @Value("${queries.sql.user-dao.select.user-by-email}")
@@ -46,6 +49,11 @@ public class UserDAOImpl implements UserDAO {
                 user.getSituation().name(), user.getRole().name());
 
         return user.createWithId(userId);
+    }
+
+    @Override
+    public List<User> findAll() {
+        return jdbcTemplate.query(selectAllUsersQuery, this::mapperUserFromRs);
     }
 
     @Override

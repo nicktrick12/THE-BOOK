@@ -31,6 +31,8 @@ queries:
           INSERT INTO thebook_platform.user (id, name, username, email, password, 
           age, cpf, situation, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?::thebook_platform.situation, ?::thebook_platform.role)
       select:
+        all:
+          SELECT * FROM thebook_platform.user
         user-by-id:
           SELECT * FROM thebook_platform.user WHERE id = ?
         user-by-username:
