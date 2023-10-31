@@ -22,7 +22,7 @@ public class BookDAOImpl implements BookDAO {
     }
 
     @Value("${queries.sql.book-dao.insert.book}")
-    private String insertUserQuery;
+    private String insertBookQuery;
 
     @Value("${queries.sql.book-dao.select.all}")
     private String selectAllBooksQuery;
@@ -31,7 +31,7 @@ public class BookDAOImpl implements BookDAO {
     public Book addNewBook(Book book) {
         UUID bookId = UUID.randomUUID();
 
-        jdbcTemplate.update(insertUserQuery, bookId, book.getPages(), book.getTitle(),
+        jdbcTemplate.update(insertBookQuery, bookId, book.getPages(), book.getTitle(),
                 book.getGender(), book.getAuthor(), book.getClassification(), book.getSummary(),
                 book.getDataAdd(), book.getIdUserAdd(), book.getBookState().name(), book.getAverage());
 

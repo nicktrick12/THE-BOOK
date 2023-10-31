@@ -51,3 +51,12 @@ queries:
       select:
         all:
           SELECT * FROM thebook_platform.book
+    reading-dao:
+      insert:
+        reading: >
+          INSERT INTO thebook_platform.reading (id, id_user, id_book, 
+          date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?, ?, ?::
+          thebook_platform.reading_status, ?)
+      select:
+        all:
+          SELECT * FROM thebook_platform.reading
