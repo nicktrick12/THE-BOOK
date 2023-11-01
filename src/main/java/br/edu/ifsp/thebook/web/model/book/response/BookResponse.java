@@ -40,17 +40,17 @@ public class BookResponse {
 
     public static BookResponse createFromBook(Book book) {
         return new BookResponse(
-                book.getId(),
-                book.getPages(),
-                book.getTitle(),
-                book.getGender(),
-                book.getAuthor(),
-                book.getClassification(),
-                book.getSummary(),
-                book.getDataAdd(),
-                book.getIdUserAdd(),
-                book.getBookState(),
-                book.getAverage()
+            book.getId(),
+            book.getPages(),
+            book.getTitle(),
+            book.getGender(),
+            book.getAuthor(),
+            book.getClassification(),
+            book.getSummary(),
+            book.getDataAdd(),
+            book.getIdUserAdd(),
+            book.getBookState(),
+            book.getAverage()
         );
     }
 

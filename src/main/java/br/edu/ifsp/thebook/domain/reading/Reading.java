@@ -6,7 +6,7 @@ import java.util.UUID;
 public class Reading {
     private UUID id;
     private UUID idUser;
-    private UUID idBook;
+    private UUID idBook; //reading/id
     private Timestamp dateStart;
     private ReadingState readingState;
     private boolean isFavorite;

@@ -6,6 +6,8 @@ import br.edu.ifsp.thebook.usecases.book.BookCRUD;
 import br.edu.ifsp.thebook.usecases.reading.ReadingCRUD;
 import br.edu.ifsp.thebook.web.model.book.request.BookRequest;
 import br.edu.ifsp.thebook.web.model.book.response.BookResponse;
+import br.edu.ifsp.thebook.web.model.reading.request.ReadingUpdateRequest;
+import br.edu.ifsp.thebook.web.model.reading.response.ReadingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,11 +23,34 @@ public class ReadingController {
         this.readingCRUD = readingCRUD;
     }
 
-    @PostMapping("/add")
-    public ResponseEntity<BookResponse> addReading(@PathVariable UUID idUser,
+    @PostMapping("/users/{idUser}/books/{idBook}/add")
+    public ResponseEntity<ReadingResponse> addReading(@PathVariable UUID idUser,
                                                    @PathVariable UUID idBook) {
         Reading reading = readingCRUD.registerNewReading(idUser, idBook);
         return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
     }
+
+    @GetMapping("/users/{idUser}/books/{idBook}")
+    public ResponseEntity<ReadingResponse> findReading(@PathVariable UUID idUser,
+                                                      @PathVariable UUID idBook) {
+        Reading reading = readingCRUD.findReading(idUser, idBook);
+        return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
+    }
+
+    @PutMapping("/users/{idUser}/books/{idBook}/state")
+    public ResponseEntity<ReadingResponse> updateState(@PathVariable UUID idUser,
+                                                      @PathVariable UUID idBook,
+                                                      @RequestBody ReadingUpdateRequest request) {
+        Reading reading = readingCRUD.updateState(idUser, idBook, request);
+        return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
+    }
+
+    @PutMapping("/users/{idUser}/books/{idBook}/favorite")
+    public ResponseEntity<ReadingResponse> updateFavorite(@PathVariable UUID idUser,
+                                                         @PathVariable UUID idBook) {
+        Reading reading = readingCRUD.updateFavorite(idUser, idBook);
+        return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
+    }
+
 
 }

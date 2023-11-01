@@ -55,8 +55,17 @@ queries:
       insert:
         reading: >
           INSERT INTO thebook_platform.reading (id, id_user, id_book, 
-          date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?, ?, ?::
-          thebook_platform.reading_status, ?)
+          date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?::thebook_platform.reading_status, ?, ?)
       select:
-        all:
+        all: >
           SELECT * FROM thebook_platform.reading
+        reading: >
+          SELECT * FROM thebook_platform.reading WHERE id_user = ? AND id_book = ?
+
+      update:
+        state: >
+          UPDATE thebook_platform.reading SET status = ?::thebook_platform.reading_status
+          WHERE id_user = ? AND id_book = ?
+        favorite:
+          UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
+          

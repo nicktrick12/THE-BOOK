@@ -32,12 +32,27 @@ public class ReadingDAOlmpl implements ReadingDAO {
     @Value("${queries.sql.reading-dao.select.all}")
     private String selectAllReadingsQuery;
 
+    @Value("${queries.sql.reading-dao.select.reading}")
+    private String selectReadingQuery;
+
+    @Value("${queries.sql.reading-dao.update.state}")
+    private String updateReadingStateQuery;
+
+    @Value("queries.sql.reading-da0.update.favorite")
+    private String updateReadingFavoriteQuery;
+
+    @Override
+    public Reading findByUserIdAndBookId(UUID idUser, UUID idBook) {
+        return jdbcTemplate.queryForObject(selectReadingQuery, this::mapperReadingFromRs,
+                idUser, idBook);
+    }
+
     @Override
     public Reading addNewReading(Reading reading) {
         UUID readingId = UUID.randomUUID();
 
         jdbcTemplate.update(insertReadingQuery, readingId, reading.getIdUser(), reading.getIdBook(),
-                Timestamp.valueOf(LocalDateTime.now()), ReadingState.LENDO, false, 0);
+                Timestamp.valueOf(LocalDateTime.now()), ReadingState.LENDO.name(), false, 0);
 
         return reading.createWithId(readingId);
     }
@@ -49,7 +64,20 @@ public class ReadingDAOlmpl implements ReadingDAO {
 
     @Override
     public Reading updateFavorite(Reading reading) {
-        return null;
+        jdbcTemplate.update(updateReadingFavoriteQuery, !reading.isFavorite(),
+                reading.getIdUser(), reading.getIdBook());
+
+        Reading readingDB = findByUserIdAndBookId(reading.getIdUser(), reading.getIdBook());
+        return readingDB;
+    }
+
+    @Override
+    public Reading updateState(Reading reading) {
+        jdbcTemplate.update(updateReadingStateQuery, reading.getReadingState().name(),
+                reading.getIdUser(), reading.getIdBook());
+
+        Reading readingDB = findByUserIdAndBookId(reading.getIdUser(), reading.getIdBook());
+        return readingDB;
     }
 
     public Reading mapperReadingFromRs(ResultSet rs, int rowNum) throws SQLException {
