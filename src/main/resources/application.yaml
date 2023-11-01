@@ -68,4 +68,3 @@ queries:
           WHERE id_user = ? AND id_book = ?
         favorite:
           UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
-          
