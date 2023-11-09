@@ -20,6 +20,7 @@ public class ReadingController {
     private final ReadingCRUD readingCRUD;
 
     public ReadingController(ReadingCRUD readingCRUD) {
+
         this.readingCRUD = readingCRUD;
     }
 

@@ -68,3 +68,11 @@ queries:
           WHERE id_user = ? AND id_book = ?
         favorite:
           UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
+    comment-dao:
+      insert:
+        comment:
+          INSERT INTO thebook_platform.comment (id, id_user, id_book, text) 
+          VALUES (?, ?, ?, ?)
+      select:
+        all:
+          S

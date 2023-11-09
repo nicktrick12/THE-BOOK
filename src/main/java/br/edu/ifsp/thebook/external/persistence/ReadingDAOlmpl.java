@@ -41,6 +41,8 @@ public class ReadingDAOlmpl implements ReadingDAO {
     @Value("${queries.sql.reading-dao.update.favorite}")
     private String updateReadingFavoriteQuery;
 
+
+
     @Override
     public Reading findByUserIdAndBookId(UUID idUser, UUID idBook) {
         return jdbcTemplate.queryForObject(selectReadingQuery, this::mapperReadingFromRs,
