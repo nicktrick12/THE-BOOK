@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class ReadingCRUDlmpl implements ReadingCRUD{
+public class ReadingCRUDImpl implements ReadingCRUD{
 
     private final ReadingDAO readingDAO;
 
-    public ReadingCRUDlmpl(ReadingDAO readingDAO) {
+    public ReadingCRUDImpl(ReadingDAO readingDAO) {
         this.readingDAO = readingDAO;
     }
 

@@ -11,7 +11,7 @@ public interface CommentDAO {
     List<Comment> findAll();
     Optional<Comment> findById(UUID id);
     Optional<Comment> findByIdUser(UUID idUser);
-    Optional<Comment> findByIdBook(UUID idBook);
+    Optional<Comment> findByIdChatroom(UUID idChatroom);
     Comment delete(Comment comment);
     Boolean commentExists(UUID commentId);
 }

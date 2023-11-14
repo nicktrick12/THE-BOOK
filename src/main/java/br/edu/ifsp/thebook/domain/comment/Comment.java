@@ -5,32 +5,32 @@ import java.util.UUID;
 public class Comment {
     private UUID id;
     private UUID idUser;
-    private UUID idBook;
+    private UUID idChatroom;
     private String text;
 
-    public Comment(UUID id, UUID idUser, UUID idBook, String text) {
+    public Comment(UUID id, UUID idUser, UUID idChatroom, String text) {
         this.id = id;
         this.idUser = idUser;
-        this.idBook = idBook;
+        this.idChatroom = idChatroom;
         this.text = text;
     }
 
-    public Comment(UUID idUser, UUID idBook, String text) {
+    public Comment(UUID idUser, UUID idChatroom, String text) {
         this.idUser = idUser;
-        this.idBook = idBook;
+        this.idChatroom = idChatroom;
         this.text = text;
     }
 
-    public static Comment createFull(UUID id, UUID idUser, UUID idBook, String text){
-        return new Comment(id, idUser, idBook, text);
+    public static Comment createFull(UUID id, UUID idUser, UUID idChatroom, String text){
+        return new Comment(id, idUser, idChatroom, text);
     }
 
-    public static Comment createFromUser(UUID idUser, UUID idBook, String text){
-        return new Comment(idUser, idBook, text);
+    public static Comment createFromUser(UUID idUser, UUID idChatroom, String text){
+        return new Comment(idUser, idChatroom, text);
     }
 
     public Comment createWithId(UUID id){
-        return new Comment(id, idUser, idBook, text);
+        return new Comment(id, idUser, idChatroom, text);
     }
 
     public UUID getId() {
@@ -49,12 +49,12 @@ public class Comment {
         this.idUser = idUser;
     }
 
-    public UUID getIdBook() {
-        return idBook;
+    public UUID getIdChatroom() {
+        return idChatroom;
     }
 
-    public void setIdBook(UUID idBook) {
-        this.idBook = idBook;
+    public void setIdChatroom(UUID idChatroom) {
+        this.idChatroom = idChatroom;
     }
 
     public String getText() {

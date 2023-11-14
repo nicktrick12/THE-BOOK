@@ -70,9 +70,17 @@ queries:
           UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
     comment-dao:
       insert:
-        comment:
+        comment: >
           INSERT INTO thebook_platform.comment (id, id_user, id_book, text) 
           VALUES (?, ?, ?, ?)
       select:
-        all:
-          S
+        all: >
+          SELECT * FROM thebook_platfrom.comment
+        comment-by-id: >
+          SELECT * FROM thebook_platform.comment WHERE id = ?
+        comment-by-id-user: >
+          SELECT * FROM thebook_platform.comment WHERE id_user = ?
+        comment-by-id-chatroom: >
+          SELECT * FROM thebook_platform.comment WHERE id_chatroom
+          
+        

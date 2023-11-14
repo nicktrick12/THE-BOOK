@@ -1,28 +1,24 @@
 package br.edu.ifsp.thebook.external.persistence;
 
-import br.edu.ifsp.thebook.domain.book.Book;
-import br.edu.ifsp.thebook.domain.book.BookState;
 import br.edu.ifsp.thebook.domain.reading.Reading;
 import br.edu.ifsp.thebook.domain.reading.ReadingState;
 import br.edu.ifsp.thebook.usecases.reading.gateway.ReadingDAO;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cglib.core.Local;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class ReadingDAOlmpl implements ReadingDAO {
+public class ReadingDAOImpl implements ReadingDAO {
     private JdbcTemplate jdbcTemplate;
 
-    public ReadingDAOlmpl(JdbcTemplate jdbcTemplate) {
+    public ReadingDAOImpl(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
 

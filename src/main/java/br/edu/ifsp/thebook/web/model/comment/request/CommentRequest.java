@@ -6,12 +6,12 @@ import java.util.UUID;
 
 public class CommentRequest {
     private UUID idUser;
-    private UUID idBook;
+    private UUID idChatroom;
     private String text;
 
-    public CommentRequest(UUID idUser, UUID idBook, String text) {
+    public CommentRequest(UUID idUser, UUID idChatroom, String text) {
         this.idUser = idUser;
-        this.idBook = idBook;
+        this.idChatroom = idChatroom;
         this.text = text;
     }
 
@@ -19,7 +19,7 @@ public class CommentRequest {
     }
 
     public Comment toComment(){
-        return Comment.createFromUser(idUser, idBook, text);
+        return Comment.createFromUser(idUser, idChatroom, text);
     }
 
     public UUID getIdUser() {
@@ -30,12 +30,12 @@ public class CommentRequest {
         this.idUser = idUser;
     }
 
-    public UUID getIdBook() {
-        return idBook;
+    public UUID getIdChatroom() {
+        return idChatroom;
     }
 
-    public void setIdBook(UUID idBook) {
-        this.idBook = idBook;
+    public void setIdChatroom(UUID idChatroom) {
+        this.idChatroom = idChatroom;
     }
 
     public String getText() {

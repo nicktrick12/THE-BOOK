@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
-public class CommentCRUDlmpl implements CommentCRUD {
+public class CommentCRUDImpl implements CommentCRUD {
     private final CommentDAO commentDAO;
 
-    public CommentCRUDlmpl(CommentDAO commentDAO){ this.commentDAO =commentDAO;
+    public CommentCRUDImpl(CommentDAO commentDAO){ this.commentDAO =commentDAO;
     }
     @Override
     public Comment registerNewComment(CommentRequest request){
@@ -39,8 +39,8 @@ public class CommentCRUDlmpl implements CommentCRUD {
     }
 
     @Override
-    public Comment getByIdBook(UUID idBook){
-        Comment comment = commentDAO.findByIdBook(idBook).get();
+    public Comment getByIdChatroom(UUID idChatroom){
+        Comment comment = commentDAO.findByIdChatroom(idChatroom).get();
         return comment;
     }
 
@@ -48,12 +48,12 @@ public class CommentCRUDlmpl implements CommentCRUD {
     public Comment delete(CommentRequest request, UUID commentId){ return null;}
 
     @Override
-    public Comment registerNewComment(UUID idUser, UUID idBook) {
+    public Comment registerNewComment(UUID idUser, UUID idChatroom) {
         return null;
     }
 
     @Override
-    public Comment findComment(UUID idUser, UUID idBook) {
+    public Comment findComment(UUID idUser, UUID idChatroom) {
         return null;
     }
 

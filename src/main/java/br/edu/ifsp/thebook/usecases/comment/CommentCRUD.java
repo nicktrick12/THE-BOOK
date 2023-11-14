@@ -14,11 +14,11 @@ public interface CommentCRUD {
 
     Comment getByIdUser(UUID idUser);
 
-    Comment getByIdBook(UUID idBook);
+    Comment getByIdChatroom(UUID idChatroom);
 
     Comment delete(CommentRequest request, UUID id);
 
-    Comment registerNewComment(UUID idUser, UUID idBook);
+    Comment registerNewComment(UUID idUser, UUID idChatroom);
 
-    Comment findComment(UUID idUser, UUID idBook);
+    Comment findComment(UUID idUser, UUID idChatroom);
 }

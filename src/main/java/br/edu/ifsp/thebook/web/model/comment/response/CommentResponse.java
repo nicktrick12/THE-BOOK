@@ -7,14 +7,14 @@ import java.util.UUID;
 public class CommentResponse {
     UUID id;
     UUID idUser;
-    UUID idBook;
+    UUID idChatroom;
     String text;
 
     public CommentResponse(UUID id, UUID idUser,
-                           UUID idBook, String text) {
+                           UUID idChatroom, String text) {
         this.id = id;
         this.idUser = idUser;
-        this.idBook = idBook;
+        this.idChatroom = idChatroom;
         this.text = text;
     }
 
@@ -25,7 +25,7 @@ public class CommentResponse {
         return new CommentResponse(
                 comment.getId(),
                 comment.getIdUser(),
-                comment.getIdBook(),
+                comment.getIdChatroom(),
                 comment.getText()
         );
     }
@@ -46,12 +46,12 @@ public class CommentResponse {
         this.idUser = idUser;
     }
 
-    public UUID getIdBook() {
-        return idBook;
+    public UUID getIdChatroom() {
+        return idChatroom;
     }
 
-    public void setIdBook(UUID idBook) {
-        this.idBook = idBook;
+    public void setIdChatroom(UUID idChatroom) {
+        this.idChatroom = idChatroom;
     }
 
     public String getText() {

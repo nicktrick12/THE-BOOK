@@ -110,12 +110,34 @@ ALTER TABLE thebook_platform.reading
     ADD CONSTRAINT reading_id_book_fkey FOREIGN KEY (id_book)
         REFERENCES thebook_platform.book(id) ON DELETE CASCADE;
 
+DROP TABLE IF EXISTS thebook_platform.chatroom CASCADE;
+
+CREATE TABLE thebook_platform.chatroom(
+    id uuid NOT NULL,
+    id_user uuid NOT NULL,
+    id_book uuid NOT NULL,
+    title varchar NOT NULL
+);
+
+ALTER TABLE thebook_platform.chatroom OWNER TO "thebook";
+
+ALTER TABLE thebook_platform.chatroom
+    ADD CONSTRAINT chatroom_pkey PRIMARY KEY (id);
+
+ALTER TABLE thebook_platform.chatroom
+    ADD CONSTRAINT comment_id_user_fkey FOREIGN KEY (id_user)
+        REFERENCES thebook_platform.user(id) ON DELETE CASCADE;
+
+ALTER TABLE thebook_platform.chatroom
+    ADD CONSTRAINT comment_id_book_fkey FOREIGN KEY (id_book)
+        REFERENCES thebook_platform.book(id) ON DELETE CASCADE;
+
 DROP TABLE IF EXISTS thebook_platform.comment CASCADE;
 
 CREATE TABLE thebook_platform.comment (
     id uuid NOT NULL,
     id_user uuid NOT NULL,
-    id_book uuid NOT NULL,
+    id_chatroom uuid NOT NULL,
     text varchar NOT NULL
 );
 
@@ -129,5 +151,5 @@ ALTER TABLE thebook_platform.comment
         REFERENCES thebook_platform.user(id) ON DELETE CASCADE;
 
 ALTER TABLE thebook_platform.comment
-    ADD CONSTRAINT comment_id_book_fkey FOREIGN KEY (id_book)
-        REFERENCES thebook_platform.book(id) ON DELETE CASCADE;
+    ADD CONSTRAINT comment_id_chatroom_fkey FOREIGN KEY (id_chatroom)
+        REFERENCES thebook_platform.chatroom(id) ON DELETE CASCADE;

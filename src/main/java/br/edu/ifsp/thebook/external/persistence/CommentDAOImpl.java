@@ -29,18 +29,16 @@ public class CommentDAOImpl implements CommentDAO {
     private String selectAllCommentQuery;
     @Value("${queries.sql.comment-dao.select.comment-by-id}")
     private String selectCommentByIdQuery;
-    @Value("${queries.sql.comment-dao.select.comment-by-idUser}")
+    @Value("${queries.sql.comment-dao.select.comment-by-id-user}")
     private String selectCommentByIdUserQuery;
-    @Value("${queries.sql.comment-dao.select.comment-by-idBook}")
-    private String selectCommentByIdBookQuery;
-    @Value("${queries.sql.comment-dao.exists.comment-by-id}")
-    private String existsCommentIdQuery;
+    @Value("${queries.sql.comment-dao.select.comment-by-id-chatroom}")
+    private String selectCommentByIdChatroomQuery;
 
     @Override
     public Comment addNewComment(Comment comment) {
         UUID commentId = UUID.randomUUID();
 
-        jdbcTemplate.update(insertCommentQuery, commentId, comment.getIdUser(), comment.getIdBook(),
+        jdbcTemplate.update(insertCommentQuery, commentId, comment.getIdUser(), comment.getIdChatroom(),
                 comment.getText());
 
         return comment.createWithId(commentId);
@@ -84,13 +82,13 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public Optional<Comment> findByIdBook(UUID idBook) {
+    public Optional<Comment> findByIdChatroom(UUID idChatroom) {
         try {
-            Comment comment = jdbcTemplate.queryForObject(selectCommentByIdBookQuery,
-                    this::mapperCommentFromRs, idBook);
+            Comment comment = jdbcTemplate.queryForObject(selectCommentByIdChatroomQuery,
+                    this::mapperCommentFromRs, idChatroom);
 
             if(Objects.isNull(comment)) {
-                throw new ResourceNotFoundException("Could not find comment with idBook: " + idBook);
+                throw new ResourceNotFoundException("Could not find comment with idChatroom: " + idChatroom);
             }
 
             return Optional.of(comment);
@@ -106,15 +104,15 @@ public class CommentDAOImpl implements CommentDAO {
 
     @Override
     public Boolean commentExists(UUID commentId) {
-        Boolean exists = jdbcTemplate.queryForObject(existsCommentIdQuery, Boolean.class, commentId);
-        return Objects.nonNull(exists) && exists;
+        return null;
     }
+
     private Comment mapperCommentFromRs(ResultSet rs, int rowNum) throws SQLException {
         UUID id = (UUID) rs.getObject("id");
         UUID idUser = (UUID) rs.getObject("idUser");
-        UUID idBook = (UUID) rs.getObject("idBook");
+        UUID idChatroom = (UUID) rs.getObject("idChatroom");
         String text = rs.getString("text");
 
-        return Comment.createFull(id, idUser, idBook, text);
+        return Comment.createFull(id, idUser, idChatroom, text);
     }
 }
