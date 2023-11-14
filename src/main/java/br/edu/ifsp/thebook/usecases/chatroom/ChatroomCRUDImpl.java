@@ -3,10 +3,12 @@ package br.edu.ifsp.thebook.usecases.chatroom;
 import br.edu.ifsp.thebook.domain.chatroom.Chatroom;
 import br.edu.ifsp.thebook.usecases.chatroom.gateway.ChatroomDAO;
 import br.edu.ifsp.thebook.web.model.chatroom.request.ChatroomRequest;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
+@Service
 public class ChatroomCRUDImpl implements ChatroomCRUD{
 
     private final ChatroomDAO chatroomDAO;

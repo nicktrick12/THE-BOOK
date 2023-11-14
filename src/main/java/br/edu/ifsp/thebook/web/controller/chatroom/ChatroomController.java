@@ -10,44 +10,45 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.UUID;
 
+@RequestMapping("api/v1/chatrooms")
 @RestController
 public class ChatroomController {
     private final ChatroomCRUD chatroomCRUD;
     public ChatroomController(ChatroomCRUD chatroomCRUD ) {
         this.chatroomCRUD=chatroomCRUD;
     }
-    @PostMapping("/register")
+    @PostMapping("/add")
     public ResponseEntity<ChatroomResponse> createChatroom(@RequestBody ChatroomRequest chatroomRequest) {
         Chatroom chatroom = chatroomCRUD.registerNewChatroom(chatroomRequest);
 
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("api/v1/chatrooms/id/{chatroomId}")
+    @GetMapping("/id/{chatroomId}")
     public ResponseEntity<ChatroomResponse> getChatroomById(@PathVariable UUID chatroomid) {
         Chatroom chatroom = chatroomCRUD.getById(chatroomid);
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("api/v1/chatrooms/idUser/{idUser}")
+    @GetMapping("/idUser/{idUser}")
     public ResponseEntity<ChatroomResponse> getChatroomByIdUser(@PathVariable UUID idUser) {
         Chatroom chatroom = chatroomCRUD.getByIdUser(idUser);
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("api/v1/chatrooms/idBook/{idBook}")
+    @GetMapping("/idBook/{idBook}")
     public ResponseEntity<ChatroomResponse> getChatroomByIdBook(@PathVariable UUID idBook) {
         Chatroom chatroom = chatroomCRUD.getByIdBook(idBook);
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("api/v1/chatrooms/title/{title}")
+    @GetMapping("/title/{title}")
     public ResponseEntity<ChatroomResponse> getChatroomByTitle(@PathVariable String title) {
         Chatroom chatroom = chatroomCRUD.getByTitle(title);
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("api/v1/chatrooms/all")
+    @GetMapping("/all")
     public ResponseEntity<List<ChatroomResponse>> getAllChatrooms() {
         List<Chatroom> chatrooms = chatroomCRUD.getAllChatroom();
         return ResponseEntity.ok(chatrooms.stream()

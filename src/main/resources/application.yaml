@@ -68,10 +68,30 @@ queries:
           WHERE id_user = ? AND id_book = ?
         favorite:
           UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
+    chatroom-dao:
+      insert:
+        chatroom: >
+          INSERT INTO thebook_platform.chatroom (id, id_user, id_book, title) 
+          VALUES (?, ?, ?, ?)
+      select:
+        all: >
+          SELECT * FROM thebook_platfrom.chatroom
+        chatroom-by-id: >
+          SELECT * FROM thebook_platform.chatroom WHERE id = ?
+        chatroom-by-id-user: >
+          SELECT * FROM thebook_platform.chatroom WHERE id_user = ?
+        chatroom-by-id-book: >
+          SELECT * FROM thebook_platform.chatroom WHERE id_book = ?
+        chatroom-by-title: >
+          SELECT * FROM thebook_platform.chatroom WHERE title = ?
+      exists:
+        chatroom-by-id: >
+          SELECT 1 FROM (SELECT * FROM thebook_platform.chatroom WHERE id = ?)
+
     comment-dao:
       insert:
         comment: >
-          INSERT INTO thebook_platform.comment (id, id_user, id_book, text) 
+          INSERT INTO thebook_platform.comment (id, id_user, id_chatroom, text) 
           VALUES (?, ?, ?, ?)
       select:
         all: >
@@ -81,6 +101,6 @@ queries:
         comment-by-id-user: >
           SELECT * FROM thebook_platform.comment WHERE id_user = ?
         comment-by-id-chatroom: >
-          SELECT * FROM thebook_platform.comment WHERE id_chatroom
+          SELECT * FROM thebook_platform.comment WHERE id_chatroom = ?
           
         

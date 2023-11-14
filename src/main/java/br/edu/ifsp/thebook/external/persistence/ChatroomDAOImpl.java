@@ -6,6 +6,7 @@ import br.edu.ifsp.thebook.web.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
+@Repository
 public class ChatroomDAOImpl implements ChatroomDAO {
     private JdbcTemplate jdbcTemplate;
     public ChatroomDAOImpl(JdbcTemplate jdbcTemplate) {
@@ -26,9 +28,9 @@ public class ChatroomDAOImpl implements ChatroomDAO {
     private String selectAllChatroomsQuery;
     @Value("${queries.sql.chatroom-dao.select.chatroom-by-id}")
     private String selectChatroomByIdQuery;
-    @Value("${queries.sql.chatroom-dao.select.chatroom-by-id_user}")
+    @Value("${queries.sql.chatroom-dao.select.chatroom-by-id-user}")
     private String selectChatroomByIdUserQuery;
-    @Value("${queries.sql.chatroom-dao.select.chatroom-by-id_book}")
+    @Value("${queries.sql.chatroom-dao.select.chatroom-by-id-book}")
     private String selectChatroomByIdBookQuery;
     @Value("${queries.sql.chatroom-dao.select.chatroom-by-title}")
     private String selectChatroomByTitleQuery;
