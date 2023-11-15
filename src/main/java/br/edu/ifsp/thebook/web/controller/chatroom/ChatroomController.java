@@ -48,7 +48,7 @@ public class ChatroomController {
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
-    @GetMapping("/all")
+    @RequestMapping("/all")
     public ResponseEntity<List<ChatroomResponse>> getAllChatrooms() {
         List<Chatroom> chatrooms = chatroomCRUD.getAllChatroom();
         return ResponseEntity.ok(chatrooms.stream()
