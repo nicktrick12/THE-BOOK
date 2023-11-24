@@ -31,8 +31,8 @@ public class CommentDAOImpl implements CommentDAO {
     private String selectCommentByIdQuery;
     @Value("${queries.sql.comment-dao.select.comment-by-id-user}")
     private String selectCommentByIdUserQuery;
-    @Value("${queries.sql.comment-dao.select.comment-by-id-chatroom}")
-    private String selectCommentByIdChatroomQuery;
+    @Value("${queries.sql.comment-dao.select.comments-by-id-chatroom}")
+    private String selectAllCommentsByChatroomIdQuery;
 
     @Override
     public Comment addNewComment(Comment comment) {
@@ -82,19 +82,8 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public Optional<Comment> findByIdChatroom(UUID idChatroom) {
-        try {
-            Comment comment = jdbcTemplate.queryForObject(selectCommentByIdChatroomQuery,
-                    this::mapperCommentFromRs, idChatroom);
-
-            if(Objects.isNull(comment)) {
-                throw new ResourceNotFoundException("Could not find comment with idChatroom: " + idChatroom);
-            }
-
-            return Optional.of(comment);
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
+    public List<Comment> findAllByIdChatroom(UUID idChatroom) {
+        return jdbcTemplate.query(selectAllCommentsByChatroomIdQuery, this::mapperCommentFromRs);
     }
 
     @Override

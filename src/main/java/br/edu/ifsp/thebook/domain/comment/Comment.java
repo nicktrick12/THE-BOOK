@@ -21,12 +21,20 @@ public class Comment {
         this.text = text;
     }
 
+    public Comment(String text) {
+        this.text = text;
+    }
+
     public static Comment createFull(UUID id, UUID idUser, UUID idChatroom, String text){
         return new Comment(id, idUser, idChatroom, text);
     }
 
     public static Comment createFromUser(UUID idUser, UUID idChatroom, String text){
         return new Comment(idUser, idChatroom, text);
+    }
+
+    public static Comment createWithOnlyText(String text) {
+        return new Comment(text);
     }
 
     public Comment createWithId(UUID id){

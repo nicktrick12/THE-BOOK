@@ -32,8 +32,6 @@ public class ChatroomDAOImpl implements ChatroomDAO {
     private String selectChatroomByIdUserQuery;
     @Value("${queries.sql.chatroom-dao.select.chatroom-by-id-book}")
     private String selectChatroomByIdBookQuery;
-    @Value("${queries.sql.chatroom-dao.select.chatroom-by-title}")
-    private String selectChatroomByTitleQuery;
     @Value("${queries.sql.chatroom-dao.exists.chatroom-by-id}")
     private String existsChatroomIdQuery;
 
@@ -42,8 +40,7 @@ public class ChatroomDAOImpl implements ChatroomDAO {
     public Chatroom addNewChatroom(Chatroom chatroom) {
         UUID chatroomId = UUID.randomUUID();
 
-        jdbcTemplate.update(insertChatroomQuery, chatroomId, chatroom.getIdBook(), chatroom.getIdUser(),
-                chatroom.getTitle());
+        jdbcTemplate.update(insertChatroomQuery, chatroomId, chatroom.getIdBook(), chatroom.getIdUser());
 
         return chatroom.createWithId(chatroomId);
     }
@@ -100,23 +97,6 @@ public class ChatroomDAOImpl implements ChatroomDAO {
             return Optional.empty();
         }
     }
-
-    @Override
-    public Optional<Chatroom> findByTitle(String title) {
-        try {
-            Chatroom chatroom = jdbcTemplate.queryForObject(selectChatroomByTitleQuery,
-                    this::mapperChatroomFromRs, title);
-
-            if(Objects.isNull(chatroom)) {
-                throw new ResourceNotFoundException("Could not find chatroom with title: " + title);
-            }
-
-            return Optional.of(chatroom);
-        } catch (EmptyResultDataAccessException e) {
-            return Optional.empty();
-        }
-    }
-
     public Boolean ChatroomExists(UUID chatroomId) {
         Boolean exists = jdbcTemplate.queryForObject(existsChatroomIdQuery, Boolean.class, chatroomId);
         return Objects.nonNull(exists) && exists;
@@ -126,8 +106,7 @@ public class ChatroomDAOImpl implements ChatroomDAO {
         UUID id = (UUID) rs.getObject("id");
         UUID idUser = (UUID) rs.getObject("id");
         UUID idBook = (UUID) rs.getObject("id");
-        String title = rs.getString("title");
 
-        return Chatroom.createFull(id, idUser, idBook, title);
+        return Chatroom.createFull(id, idUser, idBook);
     }
 }

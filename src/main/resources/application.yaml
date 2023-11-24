@@ -71,8 +71,8 @@ queries:
     chatroom-dao:
       insert:
         chatroom: >
-          INSERT INTO thebook_platform.chatroom (id, id_user, id_book, title) 
-          VALUES (?, ?, ?, ?)
+          INSERT INTO thebook_platform.chatroom (id, id_user, id_book) 
+          VALUES (?, ?, ?)
       select:
         all: >
           SELECT * FROM thebook_platfrom.chatroom
@@ -82,8 +82,6 @@ queries:
           SELECT * FROM thebook_platform.chatroom WHERE id_user = ?
         chatroom-by-id-book: >
           SELECT * FROM thebook_platform.chatroom WHERE id_book = ?
-        chatroom-by-title: >
-          SELECT * FROM thebook_platform.chatroom WHERE title = ?
       exists:
         chatroom-by-id: >
           SELECT 1 FROM (SELECT * FROM thebook_platform.chatroom WHERE id = ?)
@@ -100,7 +98,7 @@ queries:
           SELECT * FROM thebook_platform.comment WHERE id = ?
         comment-by-id-user: >
           SELECT * FROM thebook_platform.comment WHERE id_user = ?
-        comment-by-id-chatroom: >
+        comments-by-id-chatroom: >
           SELECT * FROM thebook_platform.comment WHERE id_chatroom = ?
           
         

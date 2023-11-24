@@ -116,7 +116,6 @@ CREATE TABLE thebook_platform.chatroom(
     id uuid NOT NULL,
     id_user uuid NOT NULL,
     id_book uuid NOT NULL,
-    title varchar NOT NULL
 );
 
 ALTER TABLE thebook_platform.chatroom OWNER TO "thebook";

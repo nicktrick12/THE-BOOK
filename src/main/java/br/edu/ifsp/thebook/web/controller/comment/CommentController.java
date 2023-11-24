@@ -2,10 +2,12 @@ package br.edu.ifsp.thebook.web.controller.comment;
 
 import br.edu.ifsp.thebook.domain.comment.Comment;
 import br.edu.ifsp.thebook.usecases.comment.CommentCRUD;
+import br.edu.ifsp.thebook.web.model.comment.request.CommentRequest;
 import br.edu.ifsp.thebook.web.model.comment.response.CommentResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("api/v1/comments")
@@ -16,17 +18,23 @@ public class CommentController {
     public CommentController(CommentCRUD commentCRUD){
         this.commentCRUD=commentCRUD;}
 
-    @PostMapping("/users/{idUser}/books/{idChatroom}/add")
+    @PostMapping("/users/{idUser}/chatrooms/{idChatroom}/add")
     public ResponseEntity<CommentResponse> addComment(@PathVariable UUID idUser,
-                                                      @PathVariable UUID idChatroom) {
-        Comment comment = commentCRUD.registerNewComment(idUser, idChatroom);
+                                                      @PathVariable UUID idChatroom,
+                                                      @RequestBody CommentRequest request) {
+        Comment comment = commentCRUD.registerNewComment(idUser, idChatroom, request);
         return ResponseEntity.ok(CommentResponse.createFromComment(comment));
     }
 
-    @GetMapping("/users/{idUser}/books/{idChatroom}")
-    public ResponseEntity<CommentResponse> findComment(@PathVariable UUID idUser,
-                                                       @PathVariable UUID idChatroom) {
-        Comment comment = commentCRUD.findComment(idUser, idChatroom);
-        return ResponseEntity.ok(CommentResponse.createFromComment(comment));
+    @GetMapping("/users/{idUser}/chatrooms/{idChatroom}")
+    public ResponseEntity<List<CommentResponse>> findComments(
+            @PathVariable UUID idUser, @PathVariable UUID idChatroom) {
+        List <Comment> comments = commentCRUD.getAllByChatroomId(idChatroom);
+
+        return ResponseEntity.ok(
+                comments.stream()
+                        .map(CommentResponse::createFromComment)
+                        .collect(java.util.stream.Collectors.toList())
+        );
     }
 }

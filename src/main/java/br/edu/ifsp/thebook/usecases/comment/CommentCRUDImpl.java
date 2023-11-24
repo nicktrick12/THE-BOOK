@@ -15,8 +15,10 @@ public class CommentCRUDImpl implements CommentCRUD {
     public CommentCRUDImpl(CommentDAO commentDAO){ this.commentDAO =commentDAO;
     }
     @Override
-    public Comment registerNewComment(CommentRequest request){
+    public Comment registerNewComment(UUID userId, UUID chatroomId, CommentRequest request){
         Comment comment = request.toComment();
+        comment.setIdUser(userId);
+        comment.setIdChatroom(chatroomId);
         return commentDAO.addNewComment(comment);
     }
 
@@ -24,6 +26,11 @@ public class CommentCRUDImpl implements CommentCRUD {
     public List<Comment> getAll(){
         List<Comment> comments = commentDAO.findAll();
         return comments;
+    }
+
+    @Override
+    public List<Comment> getAllByChatroomId(UUID chatroomId) {
+        return commentDAO.findAllByIdChatroom(chatroomId);
     }
 
     @Override
@@ -46,16 +53,6 @@ public class CommentCRUDImpl implements CommentCRUD {
 
     @Override
     public Comment delete(CommentRequest request, UUID commentId){ return null;}
-
-    @Override
-    public Comment registerNewComment(UUID idUser, UUID idChatroom) {
-        return null;
-    }
-
-    @Override
-    public Comment findComment(UUID idUser, UUID idChatroom) {
-        return null;
-    }
 
 
 }

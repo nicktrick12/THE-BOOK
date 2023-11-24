@@ -10,31 +10,28 @@ public class Chatroom {
     private UUID id ;
     private UUID idUser;
     private UUID idBook;
-    private String title;
 
-    public Chatroom(UUID id, UUID idUser, UUID idBook, String title) {
+    public Chatroom(UUID id, UUID idUser, UUID idBook) {
         this.id = id;
         this.idUser = idUser;
         this.idBook = idBook;
-        this.title = title;
     }
 
-    public Chatroom(UUID idUser, UUID idBook, String title) {
+    public Chatroom(UUID idUser, UUID idBook) {
         this.idUser = idUser;
         this.idBook = idBook;
-        this.title = title;
     }
 
-    public static Chatroom createFull(UUID id, UUID idUser, UUID idBook, String title) {
-        return new Chatroom(id, idUser, idBook, title);
+    public static Chatroom createFull(UUID id, UUID idUser, UUID idBook) {
+        return new Chatroom(id, idUser, idBook);
     }
 
-    public static Chatroom createFromChatrrom(UUID idUser, UUID idBook, String title) {
-        return new Chatroom(idUser, idBook, title);
+    public static Chatroom createFromChatroom(UUID idUser, UUID idBook) {
+        return new Chatroom(idUser, idBook);
     }
 
     public Chatroom createWithId(UUID id) {
-        return new Chatroom(id, idUser, idBook, title);
+        return new Chatroom(id, idUser, idBook);
     }
 
     public UUID getId() {
@@ -59,13 +56,5 @@ public class Chatroom {
 
     public void setIdBook(UUID idBook) {
         this.idBook = idBook;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

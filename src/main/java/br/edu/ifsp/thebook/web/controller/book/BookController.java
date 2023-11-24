@@ -19,14 +19,6 @@ public class BookController {
         this.bookCRUD = bookCRUD;
     }
 
-//    @GetMapping("/books")
-//    public ResponseEntity<BookResponse> getCommitByTaskId(
-//            @PathVariable UUID bookId) {
-//        Book book = bookCRUD.getBookById(bookId);
-//
-//        return ResponseEntity.ok(BookResponse.convertFromBook(book));
-//        }
-
     @PostMapping("/add")
     public ResponseEntity<BookResponse> addBook(@RequestBody BookRequest request) {
         Book book = bookCRUD.registerNewBook(request);

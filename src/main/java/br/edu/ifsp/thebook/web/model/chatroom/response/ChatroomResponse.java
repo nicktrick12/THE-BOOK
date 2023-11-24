@@ -8,13 +8,11 @@ public class ChatroomResponse {
     UUID id;
     UUID idUser;
     UUID idBook;
-    String title;
 
-    public ChatroomResponse(UUID id, UUID idUser, UUID idBook, String title) {
+    public ChatroomResponse(UUID id, UUID idUser, UUID idBook) {
         this.id = id;
         this.idUser = idUser;
         this.idBook = idBook;
-        this.title = title;
     }
 
     public ChatroomResponse() {
@@ -24,8 +22,7 @@ public class ChatroomResponse {
         return new ChatroomResponse(
                 chatroom.getId(),
                 chatroom.getIdUser(),
-                chatroom.getIdBook(),
-                chatroom.getTitle()
+                chatroom.getIdBook()
         );
     }
 
@@ -51,13 +48,5 @@ public class ChatroomResponse {
 
     public void setIdBook(UUID idBook) {
         this.idBook = idBook;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

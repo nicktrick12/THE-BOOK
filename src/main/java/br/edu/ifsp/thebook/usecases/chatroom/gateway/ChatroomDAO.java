@@ -12,5 +12,4 @@ public interface ChatroomDAO {
     Optional<Chatroom> findById(UUID id);
     Optional<Chatroom> findByIdUser(UUID idUser);
     Optional<Chatroom> findByIdBook(UUID idBook);
-    Optional<Chatroom> findByTitle(String title);
 }

@@ -7,8 +7,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface CommentCRUD {
-    Comment registerNewComment(CommentRequest request);
     List<Comment> getAll();
+
+    List<Comment> getAllByChatroomId(UUID chatroomId);
 
     Comment getById(UUID id);
 
@@ -18,7 +19,5 @@ public interface CommentCRUD {
 
     Comment delete(CommentRequest request, UUID id);
 
-    Comment registerNewComment(UUID idUser, UUID idChatroom);
-
-    Comment findComment(UUID idUser, UUID idChatroom);
+    Comment registerNewComment(UUID idUser, UUID idChatroom, CommentRequest request);
 }
