@@ -115,7 +115,7 @@ DROP TABLE IF EXISTS thebook_platform.chatroom CASCADE;
 CREATE TABLE thebook_platform.chatroom(
     id uuid NOT NULL,
     id_user uuid NOT NULL,
-    id_book uuid NOT NULL,
+    id_book uuid NOT NULL
 );
 
 ALTER TABLE thebook_platform.chatroom OWNER TO "thebook";
@@ -124,7 +124,7 @@ ALTER TABLE thebook_platform.chatroom
     ADD CONSTRAINT chatroom_pkey PRIMARY KEY (id);
 
 ALTER TABLE thebook_platform.chatroom
-    ADD CONSTRAINT comment_id_user_fkey FOREIGN KEY (id_user)
+    ADD CONSTRAINT chatroom_id_user_fkey FOREIGN KEY (id_user)
         REFERENCES thebook_platform.user(id) ON DELETE CASCADE;
 
 ALTER TABLE thebook_platform.chatroom

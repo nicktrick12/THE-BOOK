@@ -17,15 +17,17 @@ public class ChatroomController {
         this.chatroomCRUD=chatroomCRUD;
     }
     @PostMapping("/users/{idUser}/books/{idBook}/add")
-    public ResponseEntity<ChatroomResponse> createChatroom(@PathVariable UUID idUser, UUID idBook) {
+    public ResponseEntity<ChatroomResponse> createChatroom(@PathVariable UUID idUser,
+                                                           @PathVariable UUID idBook) {
         Chatroom chatroom = chatroomCRUD.registerNewChatroom(idUser, idBook);
+
 
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 
     @GetMapping("/{chatroomId}")
-    public ResponseEntity<ChatroomResponse> getChatroomById(@PathVariable UUID chatroomid) {
-        Chatroom chatroom = chatroomCRUD.getById(chatroomid);
+    public ResponseEntity<ChatroomResponse> getChatroomById(@PathVariable UUID chatroomId) {
+        Chatroom chatroom = chatroomCRUD.getById(chatroomId);
         return ResponseEntity.ok(ChatroomResponse.createFromChatroom(chatroom));
     }
 

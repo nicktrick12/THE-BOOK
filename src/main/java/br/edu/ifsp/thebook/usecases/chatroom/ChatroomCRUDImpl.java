@@ -18,14 +18,27 @@ public class ChatroomCRUDImpl implements ChatroomCRUD{
     public Chatroom registerNewChatroom(UUID idUser, UUID idBook) {
         List<Chatroom> chatrooms = getAllChatroom();
         Chatroom chatroom = null;
+
         for (Chatroom dbChatroom : chatrooms) {
-            if (dbChatroom.getIdBook() == idBook) {
+            System.out.println(dbChatroom.getIdBook() + "=/" + idBook);
+            if (dbChatroom.getIdBook().equals(idBook)) {
+                System.out.println("pegar do DB");
                 chatroom = dbChatroom;
+                break;
             } else {
+                System.out.println("criar novo");
                 Chatroom newChatroom = new Chatroom(idUser, idBook);
                 chatroom = chatroomDAO.addNewChatroom(newChatroom);
             }
         }
+
+        if (chatrooms.isEmpty()) {
+            System.out.println("criar de lista vazia");
+            Chatroom newChatroom = new Chatroom(idUser, idBook);
+            chatroom = chatroomDAO.addNewChatroom(newChatroom);
+        }
+
+        System.out.println("chat no crud... idUser: " + chatroom.getIdUser());
         return chatroom;
     }
 

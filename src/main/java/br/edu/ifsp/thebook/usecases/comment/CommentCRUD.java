@@ -15,8 +15,6 @@ public interface CommentCRUD {
 
     Comment getByIdUser(UUID idUser);
 
-    Comment getByIdChatroom(UUID idChatroom);
-
     Comment delete(CommentRequest request, UUID id);
 
     Comment registerNewComment(UUID idUser, UUID idChatroom, CommentRequest request);

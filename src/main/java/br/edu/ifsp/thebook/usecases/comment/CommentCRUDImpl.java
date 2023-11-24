@@ -46,12 +46,6 @@ public class CommentCRUDImpl implements CommentCRUD {
     }
 
     @Override
-    public Comment getByIdChatroom(UUID idChatroom){
-        Comment comment = commentDAO.findByIdChatroom(idChatroom).get();
-        return comment;
-    }
-
-    @Override
     public Comment delete(CommentRequest request, UUID commentId){ return null;}
 
 

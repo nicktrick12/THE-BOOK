@@ -75,7 +75,7 @@ queries:
           VALUES (?, ?, ?)
       select:
         all: >
-          SELECT * FROM thebook_platfrom.chatroom
+          SELECT * FROM thebook_platform.chatroom
         chatroom-by-id: >
           SELECT * FROM thebook_platform.chatroom WHERE id = ?
         chatroom-by-id-user: >
@@ -93,7 +93,7 @@ queries:
           VALUES (?, ?, ?, ?)
       select:
         all: >
-          SELECT * FROM thebook_platfrom.comment
+          SELECT * FROM thebook_platform.comment
         comment-by-id: >
           SELECT * FROM thebook_platform.comment WHERE id = ?
         comment-by-id-user: >

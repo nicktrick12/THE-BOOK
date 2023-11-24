@@ -40,7 +40,7 @@ public class ChatroomDAOImpl implements ChatroomDAO {
     public Chatroom addNewChatroom(Chatroom chatroom) {
         UUID chatroomId = UUID.randomUUID();
 
-        jdbcTemplate.update(insertChatroomQuery, chatroomId, chatroom.getIdBook(), chatroom.getIdUser());
+        jdbcTemplate.update(insertChatroomQuery, chatroomId, chatroom.getIdUser(), chatroom.getIdBook());
 
         return chatroom.createWithId(chatroomId);
     }
@@ -104,8 +104,8 @@ public class ChatroomDAOImpl implements ChatroomDAO {
 
     private Chatroom mapperChatroomFromRs(ResultSet rs, int rowNum) throws SQLException {
         UUID id = (UUID) rs.getObject("id");
-        UUID idUser = (UUID) rs.getObject("id");
-        UUID idBook = (UUID) rs.getObject("id");
+        UUID idUser = (UUID) rs.getObject("id_user");
+        UUID idBook = (UUID) rs.getObject("id_book");
 
         return Chatroom.createFull(id, idUser, idBook);
     }
