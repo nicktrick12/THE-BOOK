@@ -12,4 +12,5 @@ public interface UserDAO {
     Optional<User> findByUsername(String username);
     User update(User user);
     Boolean userExists(UUID userId);
+    Optional<User> findLogin(String username, String password);
 }

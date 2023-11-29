@@ -30,6 +30,8 @@ public class UserDAOImpl implements UserDAO {
     private String insertUserQuery;
     @Value("${queries.sql.user-dao.select.all}")
     private String selectAllUsersQuery;
+    @Value("${queries.sql.user-dao.select.user-by-name-and-password}")
+    private String selectLoginQuery;
     @Value("${queries.sql.user-dao.select.user-by-id}")
     private String selectUserByIdQuery;
     @Value("${queries.sql.user-dao.select.user-by-email}")
@@ -113,6 +115,22 @@ public class UserDAOImpl implements UserDAO {
     public Boolean userExists(UUID userId) {
         Boolean exists = jdbcTemplate.queryForObject(existsUserIdQuery, Boolean.class, userId);
         return Objects.nonNull(exists) && exists;
+    }
+
+    @Override
+    public Optional<User> findLogin(String username, String password) {
+        try {
+            User user = jdbcTemplate.queryForObject(selectLoginQuery,
+                    this::mapperUserFromRs, username, password);
+
+            if(Objects.isNull(user)) {
+                throw new ResourceNotFoundException("Could not find user: " + username + password);
+            }
+
+            return Optional.of(user);
+        } catch (EmptyResultDataAccessException e) {
+            return Optional.empty();
+        }
     }
 
     private User mapperUserFromRs(ResultSet rs, int rowNum) throws SQLException {

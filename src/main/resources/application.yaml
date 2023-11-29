@@ -39,6 +39,10 @@ queries:
           SELECT * FROM thebook_platform.user WHERE username = ?
         user-by-email:
             SELECT * FROM thebook_platform.user WHERE email = ?
+        user-by-name-and-password:
+            SELECT * FROM thebook_platform.user WHERE username = ? and password = ?
+
+
       exists:
         user-by-id:
           SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)

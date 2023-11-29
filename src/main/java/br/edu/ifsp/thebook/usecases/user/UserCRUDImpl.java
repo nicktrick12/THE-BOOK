@@ -3,6 +3,7 @@ package br.edu.ifsp.thebook.usecases.user;
 import br.edu.ifsp.thebook.domain.user.Situation;
 import br.edu.ifsp.thebook.domain.user.User;
 import br.edu.ifsp.thebook.usecases.user.gateway.UserDAO;
+import br.edu.ifsp.thebook.web.model.user.request.LoginRequest;
 import br.edu.ifsp.thebook.web.model.user.request.UserRequest;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +50,11 @@ public class UserCRUDImpl implements UserCRUD {
     @Override
     public User update(UserRequest request, UUID userId) {
         return null;
+    }
+
+    @Override
+    public User getLogin(LoginRequest request) {
+        User user = userDAO.findLogin(request.getName(), request.getPassword()).get();
+        return user;
     }
 }

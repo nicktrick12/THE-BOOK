@@ -2,6 +2,7 @@ package br.edu.ifsp.thebook.web.controller.user;
 
 import br.edu.ifsp.thebook.domain.user.User;
 import br.edu.ifsp.thebook.usecases.user.UserCRUD;
+import br.edu.ifsp.thebook.web.model.user.request.LoginRequest;
 import br.edu.ifsp.thebook.web.model.user.request.UserRequest;
 import br.edu.ifsp.thebook.web.model.user.response.UserResponse;
 import org.springframework.http.ResponseEntity;
@@ -50,5 +51,12 @@ public class UserController {
         return ResponseEntity.ok(users.stream()
                 .map(UserResponse::createFromUser).toList());
     }
+
+    @GetMapping("api/v1/users/login")
+    public ResponseEntity<UserResponse> getLogin(@RequestBody LoginRequest request) {
+        User user = userCRUD.getLogin(request);
+        return ResponseEntity.ok(UserResponse.createFromUser(user));
+    }
+
 
 }
