@@ -26,9 +26,8 @@ public class CommentController {
         return ResponseEntity.ok(CommentResponse.createFromComment(comment));
     }
 
-    @GetMapping("/users/{idUser}/chatrooms/{idChatroom}")
-    public ResponseEntity<List<CommentResponse>> findComments(
-            @PathVariable UUID idUser, @PathVariable UUID idChatroom) {
+    @GetMapping("/chatrooms/{idChatroom}")
+    public ResponseEntity<List<CommentResponse>> findComments( @PathVariable UUID idChatroom) {
         List <Comment> comments = commentCRUD.getAllByChatroomId(idChatroom);
 
         return ResponseEntity.ok(
