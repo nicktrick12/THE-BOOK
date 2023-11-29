@@ -39,10 +39,8 @@ queries:
           SELECT * FROM thebook_platform.user WHERE username = ?
         user-by-email:
             SELECT * FROM thebook_platform.user WHERE email = ?
-        user-by-name-and-password:
+        user-by-username-and-password:
             SELECT * FROM thebook_platform.user WHERE username = ? and password = ?
-
-
       exists:
         user-by-id:
           SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
@@ -62,7 +60,7 @@ queries:
           date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?::thebook_platform.reading_status, ?, ?)
       select:
         all: >
-          SELECT * FROM thebook_platform.reading
+          SELECT * FROM thebook_platform.reading WHERE id_user = ?
         reading: >
           SELECT * FROM thebook_platform.reading WHERE id_user = ? AND id_book = ?
 

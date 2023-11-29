@@ -7,7 +7,7 @@ import br.edu.ifsp.thebook.domain.user.User;
 import java.util.UUID;
 
 public class Chatroom {
-    private UUID id ;
+    private UUID id;
     private UUID idUser;
     private UUID idBook;
 
