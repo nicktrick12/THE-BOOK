@@ -16,7 +16,9 @@ public class CommentCRUDImpl implements CommentCRUD {
     }
     @Override
     public Comment registerNewComment(UUID userId, UUID chatroomId, CommentRequest request){
+        System.out.println(request.getText());
         Comment comment = request.toComment();
+        System.out.println(comment.getText());
         comment.setIdUser(userId);
         comment.setIdChatroom(chatroomId);
         return commentDAO.addNewComment(comment);
