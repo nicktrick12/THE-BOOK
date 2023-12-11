@@ -1,20 +1,20 @@
 package br.edu.ifsp.thebook.web.model.user.request;
 
 public class LoginRequest {
-    private String name;
+    private String username;
     private String password;
 
-    public LoginRequest(String name, String password) {
-        this.name = name;
+    public LoginRequest(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public String getName() {
-        return name;
+    public String geUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

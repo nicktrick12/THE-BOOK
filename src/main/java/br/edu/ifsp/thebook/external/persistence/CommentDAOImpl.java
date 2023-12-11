@@ -83,7 +83,7 @@ public class CommentDAOImpl implements CommentDAO {
 
     @Override
     public List<Comment> findAllByIdChatroom(UUID idChatroom) {
-        return jdbcTemplate.query(selectAllCommentsByChatroomIdQuery, this::mapperCommentFromRs);
+        return jdbcTemplate.query(selectAllCommentsByChatroomIdQuery, this::mapperCommentFromRs, idChatroom);
     }
 
     @Override
@@ -98,8 +98,8 @@ public class CommentDAOImpl implements CommentDAO {
 
     private Comment mapperCommentFromRs(ResultSet rs, int rowNum) throws SQLException {
         UUID id = (UUID) rs.getObject("id");
-        UUID idUser = (UUID) rs.getObject("idUser");
-        UUID idChatroom = (UUID) rs.getObject("idChatroom");
+        UUID idUser = (UUID) rs.getObject("id_user");
+        UUID idChatroom = (UUID) rs.getObject("id_chatroom");
         String text = rs.getString("text");
 
         return Comment.createFull(id, idUser, idChatroom, text);

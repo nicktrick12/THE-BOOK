@@ -24,8 +24,8 @@ public class ReadingCRUDImpl implements ReadingCRUD{
     }
 
     @Override
-    public List<Reading> getAllReading() {
-        return readingDAO.findAll();
+    public List<Reading> getAllReading(UUID userId) {
+        return readingDAO.findAll(userId);
     }
 
     @Override

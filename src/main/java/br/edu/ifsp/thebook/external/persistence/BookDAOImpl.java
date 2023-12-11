@@ -3,10 +3,13 @@ package br.edu.ifsp.thebook.external.persistence;
 import br.edu.ifsp.thebook.domain.book.Book;
 import br.edu.ifsp.thebook.domain.book.BookState;
 import br.edu.ifsp.thebook.usecases.book.gateway.BookDAO;
+import br.edu.ifsp.thebook.web.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.awt.datatransfer.StringSelection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -23,9 +26,10 @@ public class BookDAOImpl implements BookDAO {
 
     @Value("${queries.sql.book-dao.insert.book}")
     private String insertBookQuery;
-
     @Value("${queries.sql.book-dao.select.all}")
     private String selectAllBooksQuery;
+    @Value("${queries.sql.book-dao.select.book-by-id}")
+    private String selectBookByIdQuery;
 
     @Override
     public Book addNewBook(Book book) {
@@ -43,6 +47,21 @@ public class BookDAOImpl implements BookDAO {
         return jdbcTemplate.query(selectAllBooksQuery, this::mapperBookFromRs);
     }
 
+    @Override
+    public Optional<Book> findById(UUID id) {
+        try{
+            Book book = jdbcTemplate.queryForObject(selectBookByIdQuery, this::mapperBookFromRs, id);
+
+            if (Objects.isNull(book)){
+            throw new ResourceNotFoundException("Could not find user " +
+                    "with id: " + id);
+            }
+            return Optional.of(book);
+        }catch (EmptyResultDataAccessException e){
+            return Optional.empty();
+        }
+    }
+
     public Book mapperBookFromRs(ResultSet rs, int rowNum) throws SQLException {
         UUID id = (UUID) rs.getObject("id");
         int pages = rs.getInt("pages");
@@ -58,5 +77,4 @@ public class BookDAOImpl implements BookDAO {
 
         return Book.createFull(id, pages, title, gender, author, classification, summary, dataAdd, idUserAdd, bookState, average);
     }
-
 }

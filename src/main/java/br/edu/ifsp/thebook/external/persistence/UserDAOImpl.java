@@ -65,7 +65,8 @@ public class UserDAOImpl implements UserDAO {
                     this::mapperUserFromRs, id);
 
             if(Objects.isNull(user)) {
-                throw new ResourceNotFoundException("Could not find user with id: " + id);
+                throw new ResourceNotFoundException("Could not find user " +
+                        "with id: " + id);
             }
 
             return Optional.of(user);

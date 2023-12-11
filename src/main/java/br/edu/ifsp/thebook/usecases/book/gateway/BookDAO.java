@@ -7,4 +7,5 @@ import java.util.*;
 public interface BookDAO {
     Book addNewBook(Book book);
     List<Book> findAll();
+    Optional <Book> findById (UUID id);
 }

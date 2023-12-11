@@ -52,7 +52,7 @@ public class UserController {
                 .map(UserResponse::createFromUser).toList());
     }
 
-    @GetMapping("api/v1/users/login")
+    @PostMapping("api/v1/users/login")
     public ResponseEntity<UserResponse> getLogin(@RequestBody LoginRequest request) {
         User user = userCRUD.getLogin(request);
         return ResponseEntity.ok(UserResponse.createFromUser(user));

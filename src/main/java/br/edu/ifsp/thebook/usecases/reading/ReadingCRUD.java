@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ReadingCRUD {
     Reading registerNewReading(UUID idUser, UUID idBook);
-    List<Reading> getAllReading();
+    List<Reading> getAllReading(UUID userId);
     Reading findReading(UUID idUser, UUID idBook);
     Reading updateState(UUID idUser, UUID idBook, ReadingUpdateRequest request);
     Reading updateFavorite(UUID idUser, UUID idBook);

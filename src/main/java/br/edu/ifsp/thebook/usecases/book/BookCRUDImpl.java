@@ -6,6 +6,8 @@ import br.edu.ifsp.thebook.web.model.book.request.BookRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 
 @Service
@@ -51,6 +53,12 @@ public class BookCRUDImpl implements BookCRUD {
                 book1.getClassification() == (book2.getClassification()) &&
                 book1.getSummary().equals(book2.getSummary()) &&
                 book1.getBookState().equals(book2.getBookState());
+    }
+
+    @Override
+    public Book getById(UUID id){
+        Book book = bookDAO.findById(id).get();
+        return book;
     }
 
 }

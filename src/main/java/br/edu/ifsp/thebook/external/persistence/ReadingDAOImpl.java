@@ -56,8 +56,8 @@ public class ReadingDAOImpl implements ReadingDAO {
     }
 
     @Override
-    public List<Reading> findAll() {
-        return jdbcTemplate.query(selectAllReadingsQuery, this::mapperReadingFromRs);
+    public List<Reading> findAll(UUID userId) {
+        return jdbcTemplate.query(selectAllReadingsQuery, this::mapperReadingFromRs, userId);
     }
 
     @Override

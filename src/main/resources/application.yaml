@@ -25,6 +25,7 @@ spring:
 
 queries:
   sql:
+
     user-dao:
       insert:
         user: >
@@ -41,11 +42,10 @@ queries:
             SELECT * FROM thebook_platform.user WHERE email = ?
         user-by-name-and-password:
             SELECT * FROM thebook_platform.user WHERE username = ? and password = ?
+        exists:
+          user-by-id:
+            SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
 
-
-      exists:
-        user-by-id:
-          SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
     book-dao:
       insert:
         book: >
@@ -55,6 +55,9 @@ queries:
       select:
         all:
           SELECT * FROM thebook_platform.book
+        book-by-id:
+          SELECT * FROM thebook_platfotm.book WHERE id = ?
+
     reading-dao:
       insert:
         reading: >
@@ -62,16 +65,16 @@ queries:
           date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?::thebook_platform.reading_status, ?, ?)
       select:
         all: >
-          SELECT * FROM thebook_platform.reading
+          SELECT * FROM thebook_platform.reading where id_user = ?
         reading: >
           SELECT * FROM thebook_platform.reading WHERE id_user = ? AND id_book = ?
-
       update:
         state: >
           UPDATE thebook_platform.reading SET status = ?::thebook_platform.reading_status
           WHERE id_user = ? AND id_book = ?
         favorite:
           UPDATE thebook_platform.reading SET is_favorite = ? WHERE id_user = ? AND id_book = ?
+
     chatroom-dao:
       insert:
         chatroom: >
@@ -104,5 +107,3 @@ queries:
           SELECT * FROM thebook_platform.comment WHERE id_user = ?
         comments-by-id-chatroom: >
           SELECT * FROM thebook_platform.comment WHERE id_chatroom = ?
-          
-        

@@ -1,16 +1,19 @@
 package br.edu.ifsp.thebook.web.controller.reading;
 
 import br.edu.ifsp.thebook.domain.book.Book;
+import br.edu.ifsp.thebook.domain.comment.Comment;
 import br.edu.ifsp.thebook.domain.reading.Reading;
 import br.edu.ifsp.thebook.usecases.book.BookCRUD;
 import br.edu.ifsp.thebook.usecases.reading.ReadingCRUD;
 import br.edu.ifsp.thebook.web.model.book.request.BookRequest;
 import br.edu.ifsp.thebook.web.model.book.response.BookResponse;
+import br.edu.ifsp.thebook.web.model.comment.response.CommentResponse;
 import br.edu.ifsp.thebook.web.model.reading.request.ReadingUpdateRequest;
 import br.edu.ifsp.thebook.web.model.reading.response.ReadingResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RequestMapping("api/v1/readings")
@@ -51,6 +54,17 @@ public class ReadingController {
                                                          @PathVariable UUID idBook) {
         Reading reading = readingCRUD.updateFavorite(idUser, idBook);
         return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
+    }
+
+    @GetMapping("/users/{userId}")
+    public ResponseEntity<List<ReadingResponse>> findComments(@PathVariable UUID userId) {
+        List <Reading> readings = readingCRUD.getAllReading(userId);
+
+        return ResponseEntity.ok(
+                readings.stream()
+                        .map(ReadingResponse::createFromReading)
+                        .collect(java.util.stream.Collectors.toList())
+        );
     }
 
 

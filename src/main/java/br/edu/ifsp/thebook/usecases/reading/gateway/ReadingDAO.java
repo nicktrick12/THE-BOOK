@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface ReadingDAO {
     Reading addNewReading(Reading reading);
-    List<Reading> findAll();
+    List<Reading> findAll(UUID userId);
 
     Reading updateFavorite(Reading reading);
     Reading updateState(Reading reading);
