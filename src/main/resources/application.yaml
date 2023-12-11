@@ -40,12 +40,18 @@ queries:
           SELECT * FROM thebook_platform.user WHERE username = ?
         user-by-email:
             SELECT * FROM thebook_platform.user WHERE email = ?
-        user-by-name-and-password:
+        user-by-username-and-password:
             SELECT * FROM thebook_platform.user WHERE username = ? and password = ?
+<<<<<<< HEAD
         exists:
           user-by-id:
             SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
 
+=======
+      exists:
+        user-by-id:
+          SELECT EXISTS(SELECT 1 FROM thebook_platform.user WHERE id = ?)
+>>>>>>> f4090362c89370636202dac0a4261524a224e09c
     book-dao:
       insert:
         book: >
@@ -65,7 +71,11 @@ queries:
           date_start, status, is_favorite, rating) VALUES(?, ?, ?, ?, ?::thebook_platform.reading_status, ?, ?)
       select:
         all: >
+<<<<<<< HEAD
           SELECT * FROM thebook_platform.reading where id_user = ?
+=======
+          SELECT * FROM thebook_platform.reading WHERE id_user = ?
+>>>>>>> f4090362c89370636202dac0a4261524a224e09c
         reading: >
           SELECT * FROM thebook_platform.reading WHERE id_user = ? AND id_book = ?
       update:

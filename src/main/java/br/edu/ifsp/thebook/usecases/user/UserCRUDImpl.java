@@ -54,8 +54,12 @@ public class UserCRUDImpl implements UserCRUD {
 
     @Override
     public User getLogin(LoginRequest request) {
+<<<<<<< HEAD
         System.out.println(request.geUsername() + " " + request.getPassword());
         User user = userDAO.findLogin(request.geUsername(), request.getPassword()).get();
+=======
+        User user = userDAO.findLogin(request.getUsername(), request.getPassword()).get();
+>>>>>>> f4090362c89370636202dac0a4261524a224e09c
         return user;
     }
 }
