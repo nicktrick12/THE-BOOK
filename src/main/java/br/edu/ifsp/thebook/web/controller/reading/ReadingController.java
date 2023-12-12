@@ -56,11 +56,7 @@ public class ReadingController {
         return ResponseEntity.ok(ReadingResponse.createFromReading(reading));
     }
 
-<<<<<<< HEAD
     @GetMapping("/users/{userId}")
-=======
-    @GetMapping("users/{userId}")
->>>>>>> f4090362c89370636202dac0a4261524a224e09c
     public ResponseEntity<List<ReadingResponse>> findComments(@PathVariable UUID userId) {
         List <Reading> readings = readingCRUD.getAllReading(userId);
 

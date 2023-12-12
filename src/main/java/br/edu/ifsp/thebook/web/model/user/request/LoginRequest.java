@@ -9,19 +9,11 @@ public class LoginRequest {
         this.password = password;
     }
 
-<<<<<<< HEAD
-    public String geUsername() {
-        return username;
-    }
-
-    public void setName(String username) {
-=======
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
->>>>>>> f4090362c89370636202dac0a4261524a224e09c
         this.username = username;
     }
 

@@ -19,8 +19,12 @@ public class ReadingCRUDImpl implements ReadingCRUD{
 
     @Override
     public Reading registerNewReading(UUID idUser, UUID idBook) {
-        Reading reading = new Reading(idUser, idBook);
-        return readingDAO.addNewReading(reading);
+        Reading dbReading = findReading(idUser, idBook);
+        if (dbReading == null) {
+            Reading reading = new Reading(idUser, idBook);
+            return readingDAO.addNewReading(reading);
+        }
+        return dbReading;
     }
 
     @Override
@@ -43,7 +47,6 @@ public class ReadingCRUDImpl implements ReadingCRUD{
     public Reading updateState(UUID idUser, UUID idBook, ReadingUpdateRequest request) {
         Reading reading = readingDAO.findByUserIdAndBookId(idUser, idBook);
         reading.setReadingState(request.getReadingState());
-
         return readingDAO.updateState(reading);
     }
 }
