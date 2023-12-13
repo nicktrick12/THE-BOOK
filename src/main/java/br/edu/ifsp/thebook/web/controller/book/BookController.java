@@ -25,7 +25,7 @@ public class BookController {
         return ResponseEntity.ok(BookResponse.createFromBook(book));
     }
 
-    @GetMapping("api/v1/books/id/{bookId}")
+    @GetMapping("{bookId}")
     public ResponseEntity<BookResponse> getBookById(@PathVariable UUID bookId){
         Book book = bookCRUD.getById(bookId);
         return ResponseEntity.ok(BookResponse.createFromBook(book));

@@ -55,7 +55,7 @@ queries:
         all:
           SELECT * FROM thebook_platform.book
         book-by-id:
-          SELECT * FROM thebook_platfotm.book WHERE id = ?
+          SELECT * FROM thebook_platform.book WHERE id = ?
 
     reading-dao:
       insert:
