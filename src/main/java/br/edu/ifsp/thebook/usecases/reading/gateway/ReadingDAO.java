@@ -13,4 +13,5 @@ public interface ReadingDAO {
     Reading updateState(Reading reading);
 
     Reading findByUserIdAndBookId(UUID idUser, UUID idBook);
+    Boolean readingExists(UUID idUser, UUID idBook);
 }

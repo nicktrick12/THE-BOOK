@@ -19,12 +19,13 @@ public class ReadingCRUDImpl implements ReadingCRUD{
 
     @Override
     public Reading registerNewReading(UUID idUser, UUID idBook) {
-        Reading dbReading = findReading(idUser, idBook);
-        if (dbReading == null) {
+        if (readingDAO.readingExists(idUser, idBook)) {
+            System.out.println("Reading already exists");
+            return findReading(idUser, idBook);
+        } else {
             Reading reading = new Reading(idUser, idBook);
             return readingDAO.addNewReading(reading);
         }
-        return dbReading;
     }
 
     @Override

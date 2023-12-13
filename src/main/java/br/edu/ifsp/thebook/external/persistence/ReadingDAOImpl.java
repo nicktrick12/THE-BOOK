@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Repository
@@ -36,6 +37,9 @@ public class ReadingDAOImpl implements ReadingDAO {
 
     @Value("${queries.sql.reading-dao.update.favorite}")
     private String updateReadingFavoriteQuery;
+
+    @Value("${queries.sql.reading-dao.exists.reading}")
+    private String existsReadingQuery;
 
 
 
@@ -76,6 +80,12 @@ public class ReadingDAOImpl implements ReadingDAO {
 
         Reading readingDB = findByUserIdAndBookId(reading.getIdUser(), reading.getIdBook());
         return readingDB;
+    }
+
+    @Override
+    public Boolean readingExists(UUID idUser, UUID idBook) {
+        Boolean exists = jdbcTemplate.queryForObject(existsReadingQuery, Boolean.class, idUser, idBook);
+        return Objects.nonNull(exists) && exists;
     }
 
     public Reading mapperReadingFromRs(ResultSet rs, int rowNum) throws SQLException {
