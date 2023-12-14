@@ -29,8 +29,7 @@ queries:
     user-dao:
       insert:
         user: >
-          INSERT INTO thebook_platform.user (id, name, username, email, password, 
-          age, cpf, situation, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?::thebook_platform.situation, ?::thebook_platform.role)
+          INSERT INTO thebook_platform.user (id, name, username, email, password) VALUES (?, ?, ?, ?, ?)
       select:
         all:
           SELECT * FROM thebook_platform.user
@@ -65,6 +64,8 @@ queries:
       select:
         all: >
           SELECT * FROM thebook_platform.reading WHERE id_user = ?
+        all-favorites: >
+          SELECT * FROM thebook_platform.reading WHERE id_user = ? AND is_favorite = true
         reading: >
           SELECT * FROM thebook_platform.reading WHERE id_user = ? AND id_book = ?
       update:

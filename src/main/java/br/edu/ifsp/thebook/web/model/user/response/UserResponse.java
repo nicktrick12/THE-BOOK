@@ -12,22 +12,14 @@ public class UserResponse {
     String username;
     String email;
     String password;
-    int age;
-    String cpf;
-    Situation situation;
-    Role role;
 
     public UserResponse(UUID id, String name, String username, String email,
-                        String password, int age, String cpf, Situation situation, Role role) {
+                        String password) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.age = age;
-        this.cpf = cpf;
-        this.situation = situation;
-        this.role = role;
     }
 
     public UserResponse() {
@@ -39,11 +31,7 @@ public class UserResponse {
                 user.getName(),
                 user.getUsername(),
                 user.getEmail(),
-                user.getPassword(),
-                user.getAge(),
-                user.getCpf(),
-                user.getSituation(),
-                user.getRole()
+                user.getPassword()
         );
     }
 
@@ -85,37 +73,5 @@ public class UserResponse {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Situation getSituation() {
-        return situation;
-    }
-
-    public void setSituation(Situation situation) {
-        this.situation = situation;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

@@ -57,8 +57,19 @@ public class ReadingController {
     }
 
     @GetMapping("/users/{userId}")
-    public ResponseEntity<List<ReadingResponse>> findComments(@PathVariable UUID userId) {
+    public ResponseEntity<List<ReadingResponse>> findReadings(@PathVariable UUID userId) {
         List <Reading> readings = readingCRUD.getAllReading(userId);
+
+        return ResponseEntity.ok(
+                readings.stream()
+                        .map(ReadingResponse::createFromReading)
+                        .collect(java.util.stream.Collectors.toList())
+        );
+    }
+
+    @GetMapping("/favorites/users/{userId}")
+    public ResponseEntity<List<ReadingResponse>> findFavorites(@PathVariable UUID userId) {
+        List <Reading> readings = readingCRUD.getAllFavorites(userId);
 
         return ResponseEntity.ok(
                 readings.stream()

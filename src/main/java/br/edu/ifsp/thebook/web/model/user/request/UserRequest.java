@@ -8,19 +8,12 @@ public class UserRequest {
     private String username;
     private String email;
     private String password;
-    private int age;
-    private String cpf;
-    private Role role;
 
-    public UserRequest(String name, String username, String email, String password,
-                       int age, String cpf, Role role) {
+    public UserRequest(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.age = age;
-        this.cpf = cpf;
-        this.role = role;
     }
 
     public UserRequest() {
@@ -28,7 +21,7 @@ public class UserRequest {
 
     public User toUser() {
         return User.createFromUser(name, username, email,
-                password, age, cpf, role);
+                password);
     }
 
 
@@ -62,29 +55,5 @@ public class UserRequest {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

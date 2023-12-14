@@ -3,24 +3,6 @@ CREATE SCHEMA thebook_platform;
 ALTER SCHEMA thebook_platform OWNER TO "thebook";
 
 -- rodar daqui --
-DROP TYPE IF EXISTS thebook_platform.situation CASCADE;
-
-CREATE TYPE thebook_platform.situation AS ENUM (
-    'LIVRE',
-    'SUSPENSO',
-    'BANIDO'
-);
-
-ALTER TYPE thebook_platform.situation OWNER TO "thebook";
-
-DROP TYPE IF EXISTS thebook_platform.role CASCADE;
-
-CREATE TYPE thebook_platform.role AS ENUM (
-    'ADMIN',
-    'LEITOR'
-);
-
-ALTER TYPE thebook_platform.role OWNER TO "thebook";
 
 DROP  TABLE IF EXISTS thebook_platform.user CASCADE;
 
@@ -29,11 +11,7 @@ CREATE TABLE thebook_platform.user (
     name varchar NOT NULL,
     username varchar NOT NULL UNIQUE,
     email varchar NOT NULL UNIQUE,
-    password varchar NOT NULL,
-    age int NOT NULL,
-    cpf varchar,
-    situation thebook_platform.situation NOT NULL,
-    role thebook_platform.role NOT NULL
+    password varchar NOT NULL
 );
 
 ALTER TABLE thebook_platform.user OWNER TO "thebook";

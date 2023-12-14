@@ -28,7 +28,8 @@ public class ReadingDAOImpl implements ReadingDAO {
 
     @Value("${queries.sql.reading-dao.select.all}")
     private String selectAllReadingsQuery;
-
+    @Value("${queries.sql.reading-dao.select.all-favorites}")
+    private String selectAllFavoritesQuery;
     @Value("${queries.sql.reading-dao.select.reading}")
     private String selectReadingQuery;
 
@@ -62,6 +63,11 @@ public class ReadingDAOImpl implements ReadingDAO {
     @Override
     public List<Reading> findAll(UUID userId) {
         return jdbcTemplate.query(selectAllReadingsQuery, this::mapperReadingFromRs, userId);
+    }
+
+    @Override
+    public List<Reading> findAllFavorites(UUID userId) {
+        return jdbcTemplate.query(selectAllFavoritesQuery, this::mapperReadingFromRs, userId);
     }
 
     @Override

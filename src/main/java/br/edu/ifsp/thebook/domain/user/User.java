@@ -9,64 +9,36 @@ public class User {
     private String username;
     private String email;
     private String password;
-    private int age;
-    private String cpf;
-    private Situation situation;
-    private Role role;
 
     public User(UUID id, String name, String username,
-                String email, String password, int age,
-                String cpf, Situation situation, Role role) {
+                String email, String password) {
         this.id = id;
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.age = age;
-        this.cpf = cpf;
-        this.situation = situation;
-        this.role = role;
     }
 
-    public User(UUID id, String name, String username,
-                String email, String password, int age,
-                Situation situation, Role role) {
-        this.id = id;
+
+    public User(String name, String username, String email, String password) {
         this.name = name;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.age = age;
-        this.situation = situation;
-        this.role = role;
-    }
-
-
-    public User(String name, String username, String email, String password,
-                int age, String cpf, Role role) {
-        this.name = name;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.age = age;
-        this.cpf = cpf;
-        this.role = role;
     }
 
     public static User createFull(UUID id, String name, String username,
-                                  String email, String password, int age,
-                                  String cpf, Situation situation, Role role) {
-        return new User(id, name, username, email, password, age, cpf, situation, role);
+                                  String email, String password) {
+        return new User(id, name, username, email, password);
     }
 
     public static User createFromUser(String name, String username, String email,
-                                 String password, int age, String cpf,
-                                 Role role) {
-        return new User(name, username, email, password, age, cpf, role);
+                                 String password) {
+        return new User(name, username, email, password);
     }
 
     public User createWithId(UUID id) {
-        return new User(id, name, username, email, password, age, cpf, situation, role);
+        return new User(id, name, username, email, password);
     }
 
     public UUID getId() {
@@ -107,37 +79,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public Situation getSituation() {
-        return situation;
-    }
-
-    public void setSituation(Situation situation) {
-        this.situation = situation;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 }

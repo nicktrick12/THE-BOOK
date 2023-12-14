@@ -19,7 +19,6 @@ public class UserCRUDImpl implements UserCRUD {
     @Override
     public User registerNewUser(UserRequest request) {
         User user = request.toUser();
-        user.setSituation(Situation.LIVRE);
         return userDAO.addNewUser(user);
     }
 

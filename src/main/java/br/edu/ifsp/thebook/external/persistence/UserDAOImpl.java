@@ -47,8 +47,7 @@ public class UserDAOImpl implements UserDAO {
         UUID userId = UUID.randomUUID();
 
         jdbcTemplate.update(insertUserQuery, userId, user.getName(), user.getUsername(),
-                user.getEmail(), user.getPassword(), user.getAge(), user.getCpf(),
-                user.getSituation().name(), user.getRole().name());
+                user.getEmail(), user.getPassword());
 
         return user.createWithId(userId);
     }
@@ -144,13 +143,8 @@ public class UserDAOImpl implements UserDAO {
         String username = rs.getString("username");
         String email = rs.getString("email");
         String password = rs.getString("password");
-        int age = rs.getInt("age");
-        String CPF = rs.getString("cpf");
-        Situation situation = Situation.valueOf(rs.getString("situation"));
-        Role role = Role.valueOf(rs.getString("role"));
 
-        return User.createFull(id, name, username, email, password,
-                age, CPF, situation, role);
+        return User.createFull(id, name, username, email, password);
     }
 
 }

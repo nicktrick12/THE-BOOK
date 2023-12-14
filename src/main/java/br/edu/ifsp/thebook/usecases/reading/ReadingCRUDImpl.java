@@ -34,6 +34,11 @@ public class ReadingCRUDImpl implements ReadingCRUD{
     }
 
     @Override
+    public List<Reading> getAllFavorites(UUID userId) {
+        return readingDAO.findAllFavorites(userId);
+    }
+
+    @Override
     public Reading findReading(UUID idUser, UUID idBook) {
         return readingDAO.findByUserIdAndBookId(idUser, idBook);
     }
